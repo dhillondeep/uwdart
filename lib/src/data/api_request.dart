@@ -14,13 +14,17 @@ var dson = new Dartson.JSON();
 /// Sends an HTTP GET request to UW API with a client provided. This Client
 /// is gathered from http client. It also takes in a List of [String] that
 /// are arguments which will be append to the URL
-Future<APIResponse> createRequest(Client client, [List args = null]) async {
+Future<APIResponse> createRequest(Client client, List<String> args, [List<String> filter = null]) async {
   String apiUrl = "";
 
-  if (args != null) {
+  if (args != null && args.length > 0) {
     apiUrl = URLPrefix + args.join("/") + ".json?" + "key=" + client.getKey();
   } else {
     apiUrl = URLPrefix + "key=" + client.getKey();
+  }
+
+  if (filter != null && filter.length > 0) {
+    apiUrl += "&" + filter.join("&");
   }
 
   http.Client httpClient = client.getHttpClient();
