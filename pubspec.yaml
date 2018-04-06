@@ -6,3 +6,4 @@ description: >-
 author: Deep Dhillon <deep@deepdhillon.ca>
 dependencies:
   http: "^0.11.3+16"
+  dartson: "^0.2.7"
