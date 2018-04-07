@@ -1,7 +1,11 @@
 # UWDart
 Waterloo OpenData Client in Dart. UWDart will supports all OpenData endpoints, and will processes all returned data in JSON.
 
-This project is under development at the moment and no version has been released. Stay Posted!!
+This project is under development at the moment but version 0.0.1 is released. It supports following EndPoints:
+- Course
+- News
+
+Check [Changelogs](CHANGELOG.md) file for all the changes.
 
 ## Waterloo OpenData Api Documentation
 https://github.com/uWaterloo/api-documentation

@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/base/endpoints.dart';
 import 'package:uwdart/src/base/uw_api.dart';
-import 'package:uwdart/src/courses/models/course_exam_schedule.dart';
-import 'package:uwdart/src/courses/models/course_full.dart';
-import 'package:uwdart/src/courses/models/course_prerequisite.dart';
-import 'package:uwdart/src/courses/models/course_schedule.dart';
-import 'package:uwdart/src/courses/models/course_simple.dart';
-import 'package:uwdart/src/courses/models/course_subject.dart';
+import 'package:uwdart/src/course/models/course_exam_schedule.dart';
+import 'package:uwdart/src/course/models/course_full.dart';
+import 'package:uwdart/src/course/models/course_prerequisite.dart';
+import 'package:uwdart/src/course/models/course_schedule.dart';
+import 'package:uwdart/src/course/models/course_simple.dart';
+import 'package:uwdart/src/course/models/course_subject.dart';
 import 'package:uwdart/src/data/api_request.dart';
 import 'package:uwdart/src/data/response_parser.dart';
 
