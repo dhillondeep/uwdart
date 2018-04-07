@@ -1,5 +1,5 @@
-/// UWImage class holds a generic structure for the Image that is returned from the API
-/// This is what JSON is deserialized into
+/// This Data Model wraps a generic structure for the Image that is returned from the API.
+/// This is used under other models who provide detailed information for a query.
 class UWImage {
   int _id;
   String _file;

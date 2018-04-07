@@ -5,6 +5,9 @@ import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/data/api_request.dart' as api;
 import 'package:uwdart/src/data/model/api_response.dart' as response;
 
+export 'package:uwdart/src/news/news.dart';
+export 'package:uwdart/src/courses/course.dart';
+
 /// Before making any calls to the API, connection has to be opened. This call
 /// opens the connection and stores the client, which then is used to make
 /// all the API calls. This is particularly useful when you need to make

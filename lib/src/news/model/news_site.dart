@@ -1,17 +1,17 @@
 import 'package:dartson/dartson.dart';
 
-/// NewsSite is a Model that contains the base data plus the site data, which is parsed from the
+/// This Data Model the basic data plus the site data, which is parsed from the
 /// UW news API. This is provided when search is the most broad.
 @Entity()
 class NewsSite {
-  int _id;
+  num _id;
   String _title;
   String _link;
   String _published;
   String _updated;
   String _site;
 
-  int get id => _id;
+  num get id => _id;
 
   String get title => _title;
 
@@ -39,7 +39,7 @@ class NewsSite {
     _title = value;
   }
 
-  set id(int value) {
+  set id(num value) {
     _id = value;
   }
 

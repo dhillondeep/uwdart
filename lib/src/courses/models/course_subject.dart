@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps more data than simple course data. It stores subject data along with
+/// description and academic level.
 @Entity()
 class CourseSubject {
   String _courseId;
@@ -24,8 +26,7 @@ class CourseSubject {
 
   String get academicLevel => _academicLevel;
 
-
-  @Property(name : "course_id")
+  @Property(name: "course_id")
   set courseId(String value) {
     _courseId = value;
   }
@@ -34,7 +35,7 @@ class CourseSubject {
     _subject = value;
   }
 
-  @Property(name : "catalog_number")
+  @Property(name: "catalog_number")
   set catalogNumber(String value) {
     _catalogNumber = value;
   }
@@ -51,7 +52,7 @@ class CourseSubject {
     _description = value;
   }
 
-  @Property(name : "academic_level")
+  @Property(name: "academic_level")
   set academicLevel(String value) {
     _academicLevel = value;
   }

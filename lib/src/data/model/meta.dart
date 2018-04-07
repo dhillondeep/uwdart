@@ -1,6 +1,6 @@
 import 'package:dartson/dartson.dart';
 
-/// MetaModel is a wrapper for meta information about the API request
+/// This Data Model is a wrapper for meta information about the API request
 @Entity()
 class Meta {
   int _requests;

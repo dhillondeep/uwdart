@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to a schedule for a course/class. It contains enrollment
+/// information and reasonable amount of course information.
 @Entity()
 class CourseSchedule {
   String _subject;
@@ -69,12 +71,12 @@ class CourseSchedule {
 
   int get enrollmentTotal => _enrollmentTotal;
 
-  @Property(name : "last_updated")
+  @Property(name: "last_updated")
   set lastUpdated(String value) {
     _lastUpdated = value;
   }
 
-  @Property(name : "academic_level")
+  @Property(name: "academic_level")
   set academicLevel(String value) {
     _academicLevel = value;
   }
@@ -83,7 +85,7 @@ class CourseSchedule {
     _term = value;
   }
 
-  @Property(name : "held_with")
+  @Property(name: "held_with")
   set heldWith(List<String> value) {
     _heldWith = value;
   }
@@ -100,42 +102,42 @@ class CourseSchedule {
     _total = value;
   }
 
-  @Property(name : "waiting_total")
+  @Property(name: "waiting_total")
   set waitingTotal(int value) {
     _waitingTotal = value;
   }
 
-  @Property(name : "waiting_capacity")
+  @Property(name: "waiting_capacity")
   set waitingCapacity(int value) {
     _waitingCapacity = value;
   }
 
-  @Property(name : "enrollment_total")
+  @Property(name: "enrollment_total")
   set enrollmentTotal(int value) {
     _enrollmentTotal = value;
   }
 
-  @Property(name : "enrollment_capacity")
+  @Property(name: "enrollment_capacity")
   set enrollmentCapacity(int value) {
     _enrollmentCapacity = value;
   }
 
-  @Property(name : "releated_component_2")
+  @Property(name: "releated_component_2")
   set relatedComponent2(String value) {
     _relatedComponent2 = value;
   }
 
-  @Property(name : "related_component_1")
+  @Property(name: "related_component_1")
   set relatedComponent1(String value) {
     _relatedComponent1 = value;
   }
 
-  @Property(name : "associated_class")
+  @Property(name: "associated_class")
   set associatedClass(int value) {
     _associatedClass = value;
   }
 
-  @Property(name : "campus")
+  @Property(name: "campus")
   set campus(String value) {
     _campus = value;
   }
@@ -144,7 +146,7 @@ class CourseSchedule {
     _section = value;
   }
 
-  @Property(name : "class_number")
+  @Property(name: "class_number")
   set classNumber(int value) {
     _classNumber = value;
   }
@@ -161,7 +163,7 @@ class CourseSchedule {
     _units = value;
   }
 
-  @Property(name : "catalog_number")
+  @Property(name: "catalog_number")
   set catalogNumber(String value) {
     _catalogNumber = value;
   }
@@ -171,6 +173,7 @@ class CourseSchedule {
   }
 }
 
+/// This Data Model is used by [CourseSchedule] to wrap data for the reserve groups.
 class CourseReserves {
   String _reserveGroup;
   int _enrollmentCapacity;
@@ -182,22 +185,24 @@ class CourseReserves {
 
   int get enrollmentTotal => _enrollmentTotal;
 
-  @Property(name : "enrollment_total")
+  @Property(name: "enrollment_total")
   set enrollmentTotal(int value) {
     _enrollmentTotal = value;
   }
 
-  @Property(name : "enrollment_capacity")
+  @Property(name: "enrollment_capacity")
   set enrollmentCapacity(int value) {
     _enrollmentCapacity = value;
   }
 
-  @Property(name : "reserve_group")
+  @Property(name: "reserve_group")
   set reserveGroup(String value) {
     _reserveGroup = value;
   }
 }
 
+/// This Data Model is used by [CourseSchedule] to wrap data for class information such as: it's dates,
+/// location and instructors.
 @Entity()
 class ClassData {
   CourseDates _date;
@@ -223,6 +228,7 @@ class ClassData {
   }
 }
 
+/// This Data Model is used by [ClassData] to wrap data about class's location.
 @Entity()
 class CourseLocation {
   String _building;
@@ -241,6 +247,7 @@ class CourseLocation {
   }
 }
 
+/// This Data Model is used by [ClassData] to wrap data about class's dates.
 @Entity()
 class CourseDates {
   String _startTime;
@@ -268,27 +275,27 @@ class CourseDates {
 
   bool get isClosed => _isClosed;
 
-  @Property(name : "is_closed")
+  @Property(name: "is_closed")
   set isClosed(bool value) {
     _isClosed = value;
   }
 
-  @Property(name : "is_cancelled")
+  @Property(name: "is_cancelled")
   set isCancelled(bool value) {
     _isCancelled = value;
   }
 
-  @Property(name : "is_tba")
+  @Property(name: "is_tba")
   set isTba(bool value) {
     _isTba = value;
   }
 
-  @Property(name : "end_date")
+  @Property(name: "end_date")
   set endDate(String value) {
     _endDate = value;
   }
 
-  @Property(name : "start_date")
+  @Property(name: "start_date")
   set startDate(String value) {
     _startDate = value;
   }
@@ -297,12 +304,12 @@ class CourseDates {
     _weekdays = value;
   }
 
-  @Property(name : "end_time")
+  @Property(name: "end_time")
   set endTime(String value) {
     _endTime = value;
   }
 
-  @Property(name : "start_time")
+  @Property(name: "start_time")
   set startTime(String value) {
     _startTime = value;
   }

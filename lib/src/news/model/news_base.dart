@@ -1,16 +1,16 @@
 import 'package:dartson/dartson.dart';
 
-/// NewBase is a Model that contains the base data parsed from the UW news API. This is provided
+/// This Data Model wraps basic data provides for each news by UW news API. This is provided
 /// when search is narrowed down to "site" level
 @Entity()
 class NewsBase {
-  int _id;
+  num _id;
   String _title;
   String _link;
   String _published;
   String _updated;
 
-  int get id => _id;
+  num get id => _id;
 
   String get title => _title;
 
@@ -36,7 +36,7 @@ class NewsBase {
     _title = value;
   }
 
-  set id(int value) {
+  set id(num value) {
     _id = value;
   }
 }

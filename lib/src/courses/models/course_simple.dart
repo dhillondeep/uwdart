@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps simple data for a course. This is used when a list of courses is wanted
+/// and a lot of information about the course is not needed.
 @Entity()
 class CourseSimple {
   String _courseId;
@@ -15,7 +17,7 @@ class CourseSimple {
 
   String get title => _title;
 
-  @Property(name : "course_id")
+  @Property(name: "course_id")
   set courseId(String value) {
     _courseId = value;
   }
@@ -24,7 +26,7 @@ class CourseSimple {
     _subject = value;
   }
 
-  @Property(name : "catalog_number")
+  @Property(name: "catalog_number")
   set catalogNumber(String value) {
     _catalogNumber = value;
   }

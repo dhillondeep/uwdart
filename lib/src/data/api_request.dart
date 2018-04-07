@@ -14,7 +14,8 @@ var dson = new Dartson.JSON();
 /// Sends an HTTP GET request to UW API with a client provided. This Client
 /// is gathered from http client. It also takes in a List of [String] that
 /// are arguments which will be append to the URL
-Future<APIResponse> createRequest(Client client, List<String> args, [List<String> filter = null]) async {
+Future<APIResponse> createRequest(Client client, List<String> args,
+    [List<String> filter = null]) async {
   String apiUrl = "";
 
   if (args != null && args.length > 0) {
@@ -57,4 +58,17 @@ Future<APIResponse> createRequest(Client client, List<String> args, [List<String
           "Check provided Arguments!");
     }
   }).catchError((e) => throw (e));
+}
+
+/// Verifies the filter key value provided and based on that returns a filter
+List<String> getValidFilter(String keyStart, String keyValue) {
+  List<String> filter;
+
+  if (keyValue == null) {
+    filter = null;
+  } else {
+    filter = [keyStart + "=" + keyValue];
+  }
+
+  return filter;
 }

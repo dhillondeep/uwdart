@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to an individual course. The data is full data set provides
+/// by the API and is given when individual course is asked for.
 @Entity()
 class CourseFull {
   String _courseId;
@@ -63,7 +65,7 @@ class CourseFull {
 
   CourseOfferings get offerings => _offerings;
 
-  @Property(name : "course_id")
+  @Property(name: "course_id")
   set courseId(String value) {
     _courseId = value;
   }
@@ -72,7 +74,7 @@ class CourseFull {
     _subject = value;
   }
 
-  @Property(name : "catalog_number")
+  @Property(name: "catalog_number")
   set catalogNumber(String value) {
     _catalogNumber = value;
   }
@@ -89,7 +91,7 @@ class CourseFull {
     _description = value;
   }
 
-  @Property(name : "academic_level")
+  @Property(name: "academic_level")
   set academicLevel(String value) {
     _academicLevel = value;
   }
@@ -98,7 +100,7 @@ class CourseFull {
     _url = value;
   }
 
-  @Property(name : "calendar_year")
+  @Property(name: "calendar_year")
   set calendarYear(String value) {
     _calendarYear = value;
   }
@@ -107,17 +109,16 @@ class CourseFull {
     _extra = value;
   }
 
-
   set offerings(CourseOfferings value) {
     _offerings = value;
   }
 
-  @Property(name : "needs_instructor_consent")
+  @Property(name: "needs_instructor_consent")
   set needsInstructorConsent(bool value) {
     _needsInstructorConsent = value;
   }
 
-  @Property(name : "needs_department_consent")
+  @Property(name: "needs_department_consent")
   set needsDepartmentConsent(bool value) {
     _needsDepartmentConsent = value;
   }
@@ -126,7 +127,7 @@ class CourseFull {
     _notes = value;
   }
 
-  @Property(name : "terms_offered")
+  @Property(name: "terms_offered")
   set termsOffered(List<String> value) {
     _termsOffered = value;
   }
@@ -152,6 +153,8 @@ class CourseFull {
   }
 }
 
+/// This Data Model is used by [CourseFull] to wrap data for course offerings at UW. It let's the user
+/// know what type of course offerings are available.
 @Entity()
 class CourseOfferings {
   bool _online;
@@ -179,17 +182,17 @@ class CourseOfferings {
 
   bool get conradGrebelOnly => _conradGrebelOnly;
 
-  @Property(name : "conrad_grebel_only")
+  @Property(name: "conrad_grebel_only")
   set conradGrebelOnly(bool value) {
     _conradGrebelOnly = value;
   }
 
-  @Property(name : "conrad_grebel")
+  @Property(name: "conrad_grebel")
   set conradGrebel(bool value) {
     _conradGrebel = value;
   }
 
-  @Property(name : "renison_only")
+  @Property(name: "renison_only")
   set renisonOnly(bool value) {
     _renisonOnly = value;
   }
@@ -198,17 +201,17 @@ class CourseOfferings {
     _renison = value;
   }
 
-  @Property(name : "st_jerome_only")
+  @Property(name: "st_jerome_only")
   set stJeromeOnly(bool value) {
     _stJeromeOnly = value;
   }
 
-  @Property(name : "st_jerome")
+  @Property(name: "st_jerome")
   set stJerome(bool value) {
     _stJerome = value;
   }
 
-  @Property(name : "online_only")
+  @Property(name: "online_only")
   set onlineOnly(bool value) {
     _onlineOnly = value;
   }
@@ -217,4 +220,3 @@ class CourseOfferings {
     _online = value;
   }
 }
-  

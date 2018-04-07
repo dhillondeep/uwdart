@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to exam schedules. It has a name of the course and examination
+/// information for it's each section.
 @Entity()
 class CourseExamSchedule {
   String _course;
@@ -18,6 +20,8 @@ class CourseExamSchedule {
   }
 }
 
+/// This Data Model is used by [CourseExamSchedule] to warp exam schedule information for each
+/// individual section.
 @Entity()
 class CourseExamSection {
   String _section;

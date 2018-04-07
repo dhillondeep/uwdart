@@ -1,9 +1,8 @@
 import 'package:dartson/dartson.dart';
 import 'package:uwdart/src/data/model/meta.dart';
 
-/// APIResponse class wraps the raw response from the UW API and provides
-/// getters and setters for various fields. It however also provides
-/// an access to raw response as a string
+/// This Data Model wraps the raw response from the UW API and provides getters and setters for
+/// various fields. It however also provides an access to the raw response as a string
 @Entity()
 class APIResponse {
   Meta _meta;

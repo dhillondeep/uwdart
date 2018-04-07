@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to prerequisites of a course. It only contains brief
+/// information about the course.
 @Entity()
 class CoursePrerequisite {
   String _subject;
@@ -18,7 +20,7 @@ class CoursePrerequisite {
 
   String get title => _title;
 
-  @Property(name : "prerequisites_parsed")
+  @Property(name: "prerequisites_parsed")
   set prerequisitesParsed(List<dynamic> value) {
     _prerequisitesParsed = value;
   }
@@ -31,7 +33,7 @@ class CoursePrerequisite {
     _title = value;
   }
 
-  @Property(name : "catalog_number")
+  @Property(name: "catalog_number")
   set catalogNumber(String value) {
     _catalogNumber = value;
   }

@@ -1,11 +1,11 @@
 import 'package:dartson/dartson.dart';
 import 'package:uwdart/src/base/models/uw_image.dart';
 
-/// NewsDetailed is a Model that contains the most detailed description for the news. It is the most
+/// This Data Model wraps the most detailed description for the news. It is the most
 /// narrow search and hence contains all the fields provided by the API.
 @Entity()
 class NewsDetailed {
-  int _id;
+  num _id;
   String _title;
   String _link;
   String _published;
@@ -16,9 +16,9 @@ class NewsDetailed {
   UWImage _image;
   String _siteId;
   String _siteName;
-  int _revisionId;
+  num _revisionId;
 
-  int get id => _id;
+  num get id => _id;
 
   String get title => _title;
 
@@ -40,7 +40,7 @@ class NewsDetailed {
 
   String get siteName => _siteName;
 
-  int get revisionId => _revisionId;
+  num get revisionId => _revisionId;
 
   set updated(String value) {
     _updated = value;
@@ -58,7 +58,7 @@ class NewsDetailed {
     _title = value;
   }
 
-  set id(int value) {
+  set id(num value) {
     _id = value;
   }
 
@@ -90,7 +90,7 @@ class NewsDetailed {
   }
 
   @Property(name: "revision_id")
-  set revisionId(int value) {
+  set revisionId(num value) {
     _revisionId = value;
   }
 }
