@@ -7,18 +7,18 @@ Future main() async {
   // create a client by providing it a key
   var client = OpenConnection(apiKey);
 
-  // Create Course API to use Course Endpoints
-  CourseAPI courseAPI = new CourseAPI(client);
+  // Create CourseEndpoint object to use Course Endpoints
+  CourseEndpoint courseEndpoint = new CourseEndpoint(client);
 
   // Gives access to all the courses available at UW
-  await courseAPI.getAllCourses().then((courses) async {
+  await courseEndpoint.getAllCourses().then((courses) async {
     for (int i = 0; i < 50; i++ ) {
       print("Title: " + courses[i].title);
       String catalogNum =  courses[i].catalogNumber;
       String subject = courses[i].subject;
 
       // based on the subject and catalog number, get detailed info about the package
-      await courseAPI.getCourseBySubjectCatalog(subject, catalogNum).then((course) {
+      await courseEndpoint.getCourseBySubjectCatalog(subject, catalogNum).then((course) {
         print("-> URL for ${courses[i].catalogNumber}: " + course.url);
       });
     }

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/base/endpoints.dart';
-import 'package:uwdart/src/base/uw_api.dart';
+import 'package:uwdart/src/base/uw_endpoint.dart';
 import 'package:uwdart/src/course/models/course_exam_schedule.dart';
 import 'package:uwdart/src/course/models/course_full.dart';
 import 'package:uwdart/src/course/models/course_prerequisite.dart';
@@ -14,8 +14,8 @@ import 'package:uwdart/src/data/response_parser.dart';
 
 /// CourseAPI provides a wrapper around the raw course API from UW
 /// https://github.com/uWaterloo/api-documentation#course
-class CourseAPI extends UWApi {
-  CourseAPI(Client client) : super(client);
+class CourseEndpoint extends UWEndpoint {
+  CourseEndpoint(Client client) : super(client);
 
   /// Get's all the courses that are offered at the University of Waterloo and provides
   /// a list of simple course model for them.

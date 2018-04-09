@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/base/endpoints.dart';
-import 'package:uwdart/src/base/uw_api.dart';
+import 'package:uwdart/src/base/uw_endpoint.dart';
 import 'package:uwdart/src/data/api_request.dart';
 import 'package:uwdart/src/data/response_parser.dart';
 import 'package:uwdart/src/news/model/news_base.dart';
@@ -11,8 +11,8 @@ import 'package:uwdart/src/news/model/news_site.dart';
 
 /// NewsAPI provides a wrapper around the raw news API from UW
 /// https://github.com/uWaterloo/api-documentation#news
-class NewsAPI extends UWApi {
-  NewsAPI(Client client) : super(client);
+class NewsEndpoint extends UWEndpoint {
+  NewsEndpoint(Client client) : super(client);
 
   /// Returns a list of [NewsSite] model for all types of news gathered. There is no parameter that
   /// is needed because it contains a list of all the news there are. Only top 100.

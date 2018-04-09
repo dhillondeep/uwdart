@@ -7,11 +7,11 @@ Future main() async {
   // create a client by providing it a key
   var client = OpenConnection(apiKey);
 
-  // Create Course API to use Course Endpoints
-  CourseAPI courseAPI = new CourseAPI(client);
+  // Create CourseEndpoint object to use Course Endpoints
+  CourseEndpoint courseEndpoint = new CourseEndpoint(client);
 
-  // Create News API to use News Endpoints
-  NewsAPI newsAPI = new NewsAPI(client);
+  // Create NewsEndpoint object to use News Endpoints
+  NewsEndpoint newsEndpoint = new NewsEndpoint(client);
 
   // close the connection
   await CloseConnection(client);
