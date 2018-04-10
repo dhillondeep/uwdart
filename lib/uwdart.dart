@@ -12,14 +12,14 @@ export 'package:uwdart/src/news/news_endpoint.dart';
 /// opens the connection and stores the client, which then is used to make
 /// all the API calls. This is particularly useful when you need to make
 /// multiple calls and opening connection multiple times is not time effective.
-OpenConnection(String key) {
+Client OpenConnection(String key) {
   return new Client(key, new http.Client());
 }
 
 /// Closes the connection that previously opened. It cleans up the resources
 /// associated with it and hence must always be called. Failing to do so can
 /// cause the Dart process to hang.
-CloseConnection(Client client) {
+void CloseConnection(Client client) {
   client.getHttpClient().close();
 }
 
