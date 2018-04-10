@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to all the API services that are offered through UW
+/// Open Data API.
 @Entity()
 class ApiService {
   int _serviceId;
@@ -8,8 +10,11 @@ class ApiService {
   List<ApiServiceMethod> _methods;
 
   int get serviceId => _serviceId;
+
   String get serviceName => _serviceName;
+
   String get serviceUrl => _serviceUrl;
+
   List<ApiServiceMethod> get methods => _methods;
 
   @Property(name: "service_id")
@@ -32,6 +37,8 @@ class ApiService {
   }
 }
 
+/// This Data Model is used by [ApiService] to store brief information about method available
+/// for each API service.
 @Entity()
 class ApiServiceMethod {
   num _methodId;

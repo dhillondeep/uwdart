@@ -1,5 +1,6 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to API methods that are available for every service.
 @Entity()
 class ApiMethod {
   int _methodId;
@@ -8,11 +9,14 @@ class ApiMethod {
   String _serviceName;
   List<String> _parameters;
 
-
   int get methodId => _methodId;
+
   String get methodUrl => _methodUrl;
+
   int get serviceId => _serviceId;
+
   String get serviceName => _serviceName;
+
   List<String> get parameters => _parameters;
 
   @Property(name: "method_id")

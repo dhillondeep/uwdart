@@ -174,6 +174,7 @@ class CourseSchedule {
 }
 
 /// This Data Model is used by [CourseSchedule] to wrap data for the reserve groups.
+@Entity()
 class CourseReserves {
   String _reserveGroup;
   int _enrollmentCapacity;

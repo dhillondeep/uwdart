@@ -1,5 +1,7 @@
 import 'package:dartson/dartson.dart';
 
+/// This Data Model wraps data related to API Versions throughout the years of UW Open Data
+/// API Development.
 @Entity()
 class ApiVersion {
   double _version;

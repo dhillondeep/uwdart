@@ -60,6 +60,12 @@ Future<APIResponse> createRequest(Client client, List<String> args,
   }).catchError((e) => throw (e));
 }
 
+/// This parses the data from JSON to a list of Objects. This should
+/// be used to convert between list of classes
+List parseResponse(APIResponse response, Object obj) {
+  return dson.map(response.data, obj, true);
+}
+
 /// Verifies the filter key value provided and based on that returns a filter
 List<String> getValidFilter(String keyStart, String keyValue) {
   List<String> filter;
