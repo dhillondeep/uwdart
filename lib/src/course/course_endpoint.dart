@@ -20,28 +20,28 @@ class CourseEndpoint extends UWEndpoint {
   /// a list of [CourseSimple] objects.
   Future<List<CourseSimple>> getAllCourses() async {
     return createRequest(client, [COURSES_ENDPOINT])
-        .then((data) => parseResponse(data, new CourseSimple()));
+        .then((data) => new ResponseParser<CourseSimple>().parse(data));
   }
 
   /// Get's all the courses under the subject provided. It gathers all the courses and provides
   /// a list of [CourseSubject] objects.
   Future<List<CourseSubject>> getCoursesBySubject(String subject) async {
     return createRequest(client, [COURSES_ENDPOINT, subject])
-        .then((data) => parseResponse(data, new CourseSubject()));
+        .then((data) => new ResponseParser<CourseSubject>().parse(data));
   }
 
   /// Get's a course by it's course ID. It gathers the course and provides a [CourseFull] object,
   /// which contains detailed course information.
   Future<CourseFull> getCourseByCourseId(String courseId) async {
     return createRequest(client, [COURSES_ENDPOINT, courseId])
-        .then((data) => parseResponse(data, new CourseFull())[0]);
+        .then((data) => new ResponseParser<CourseFull>().parse(data)[0]);
   }
 
   /// Get's a course based on the subject and catalog number. It gathers the course data and
   /// provides a [CourseFull] object, which contains detailed course information.
   Future<CourseFull> getCourseBySubjectCatalog(String subject, String catalogNumber) {
     return createRequest(client, [COURSES_ENDPOINT, subject, catalogNumber])
-        .then((data) => parseResponse(data, new CourseFull())[0]);
+        .then((data) => new ResponseParser<CourseFull>().parse(data)[0]);
   }
 
   /// Get'a course prerequisite based on the subject and catalog number. It gathers the data
@@ -49,7 +49,7 @@ class CourseEndpoint extends UWEndpoint {
   Future<CoursePrerequisite> getCoursePrerequisiteBySubjectCatalog(String sub, String catalogNum) {
     return createRequest(
             client, [COURSES_ENDPOINT, sub, catalogNum, COURSES_PREREQUISITES_ENDPOINT])
-        .then((data) => parseResponse(data, new CoursePrerequisite())[0]);
+        .then((data) => new ResponseParser<CoursePrerequisite>().parse(data)[0]);
   }
 
   /// Get's schedules for a class based on it's class number. It wraps the data in a
@@ -62,7 +62,7 @@ class CourseEndpoint extends UWEndpoint {
     String classNumStr = classNumber.toString();
 
     return createRequest(client, [COURSES_ENDPOINT, classNumStr, COURSES_SCHEDULE_ENDPOINT], filter)
-        .then((data) => parseResponse(data, new CourseSchedule()));
+        .then((data) => new ResponseParser<CourseSchedule>().parse(data));
   }
 
   /// Get's schedule for a course based on it's subject and catalog number. It wraps the data in
@@ -75,7 +75,7 @@ class CourseEndpoint extends UWEndpoint {
 
     return createRequest(
             client, [COURSES_ENDPOINT, sub, catalogNum, COURSES_SCHEDULE_ENDPOINT], filter)
-        .then((data) => parseResponse(data, new CourseSchedule()));
+        .then((data) => new ResponseParser<CourseSchedule>().parse(data));
   }
 
   /// Get's schedule for exams based on a course's subject and catalog number. It wraps the
@@ -88,6 +88,6 @@ class CourseEndpoint extends UWEndpoint {
 
     return createRequest(
             client, [COURSES_ENDPOINT, sub, catalogNum, COURSES_EXAM_SCHEDULE_ENDPOINT], filter)
-        .then((data) => parseResponse(data, new CourseExamSchedule())[0]);
+        .then((data) => new ResponseParser<CourseExamSchedule>().parse(data)[0]);
   }
 }

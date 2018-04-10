@@ -7,6 +7,7 @@ import 'package:uwdart/src/data/model/api_response.dart' as response;
 
 export 'package:uwdart/src/course/course_endpoint.dart';
 export 'package:uwdart/src/news/news_endpoint.dart';
+export 'package:uwdart/src/api/api_endpoint.dart';
 
 /// Before making any calls to the API, connection has to be opened. This call
 /// opens the connection and stores the client, which then is used to make
@@ -26,6 +27,7 @@ void CloseConnection(Client client) {
 /// This allows the user to make raw requests to the API and get an [response.APIResponse] object
 /// value pair. This is useful when testing the API. Otherwise built in API
 /// parsers must be used since they do all the heavy lifting for you.
-Future<response.APIResponse> MakeRawRequest(Client client, [List arguments = null]) {
-  return api.createRequest(client, arguments).catchError((error) => throw error);
+Future<response.APIResponse> MakeRawRequest(Client client, List<String> args,
+    [List<String> filter = null]) {
+  return api.createRequest(client, args).catchError((error) => throw error);
 }

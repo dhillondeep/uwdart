@@ -17,20 +17,20 @@ class NewsEndpoint extends UWEndpoint {
   /// is needed because it contains a list of all the news there are. Only top 100.
   Future<List<NewsSite>> GetAllNews() async {
     return createRequest(client, [NEWS_ENDPOINT])
-        .then((data) => parseResponse(data, new NewsSite()));
+        .then((data) => new ResponseParser<NewsSite>().parse(data));
   }
 
   /// Returns a list of [NewsBase] model for all news based on the site provided. The site provided
   /// has to be a [String] like: "engineering". The max news are are 100.
   Future<List<NewsBase>> GetNewsBySite(String site) async {
     return createRequest(client, [NEWS_ENDPOINT, site])
-        .then((data) => parseResponse(data, new NewsBase()));
+        .then((data) => new ResponseParser<NewsBase>().parse(data));
   }
 
   /// Returns a [NewsDetailed] for all news based on the site and id provided. This is the most
   /// specific search and hence only one element is returned which contains the news in detailed.
   Future<NewsDetailed> GetNewsBySiteAndID(String site, int id) async {
     return createRequest(client, [NEWS_ENDPOINT, site, id.toString()])
-        .then((data) => parseResponse(data, new NewsDetailed())[0]);
+        .then((data) => new ResponseParser<NewsDetailed>().parse(data)[0]);
   }
 }

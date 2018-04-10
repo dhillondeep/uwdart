@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 
+import 'dart:mirrors';
 import 'package:dartson/dartson.dart';
 import 'package:http/http.dart' as http;
 import 'package:uwdart/src/base/client.dart';
@@ -9,7 +10,7 @@ import 'package:uwdart/src/data/model/api_response.dart';
 
 final String URLPrefix = "https://api.uwaterloo.ca/v2/";
 final int SUCCESS_CODE = 200;
-var dson = new Dartson.JSON();
+Dartson dson = new Dartson.JSON();
 
 /// Sends an HTTP GET request to UW API with a client provided. This Client
 /// is gathered from http client. It also takes in a List of [String] that
@@ -33,6 +34,7 @@ Future<APIResponse> createRequest(Client client, List<String> args,
   return httpClient.get(apiUrl).then((responseData) {
     int internalCode = responseData.statusCode;
 
+    // ignore: invalid_assignment
     Map<String, dynamic> jsonMap = JSON.decode(responseData.body);
     String bodyData = responseData.body;
     if (jsonMap["data"] is Map) {
@@ -40,6 +42,7 @@ Future<APIResponse> createRequest(Client client, List<String> args,
       bodyData = bodyData.replaceRange(bodyData.lastIndexOf("}}"), bodyData.length, "}]}");
     }
 
+    // ignore: invalid_assignment
     APIResponse request = dson.decode(bodyData, new APIResponse());
     request.raw = responseData.body;
 
@@ -60,10 +63,33 @@ Future<APIResponse> createRequest(Client client, List<String> args,
   }).catchError((e) => throw (e));
 }
 
-/// This parses the data from JSON to a list of Objects. This should
-/// be used to convert between list of classes
-List parseResponse(APIResponse response, Object obj) {
-  return dson.map(response.data, obj, true);
+/// ResponseParser class allows for static type check by providing type T and then parsing the map
+/// data to T type object.
+class ResponseParser<T> {
+  /// creates an instance of type [T] using reflection
+  static createInstance(Type type) {
+    if (type == null) {
+      throw new ArgumentError("type: $type");
+    }
+
+    Symbol constructor = const Symbol("");
+    List<String> arguments = const [];
+    Map<Symbol, String> namedArguments = new Map();
+
+    var typeMirror = reflectType(type);
+    if (typeMirror is ClassMirror) {
+      return typeMirror.newInstance(constructor, arguments, namedArguments).reflectee;
+    } else {
+      throw new ArgumentError("Cannot create the instance of the type '$type'.");
+    }
+  }
+
+  /// This parses the data from JSON to a list of Objects. This should
+  /// be used to convert between list of classes
+  List<T> parse(APIResponse response) {
+    // ignore: return_of_invalid_type
+    return dson.map(response.data, createInstance(T), true);
+  }
 }
 
 /// Verifies the filter key value provided and based on that returns a filter
