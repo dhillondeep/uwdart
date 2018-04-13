@@ -1,4 +1,4 @@
-[![Pub](https://img.shields.io/pub/v/box2d.svg)](https://pub.dartlang.org/packages/uwdart)
+[![Pub](https://img.shields.io/pub/v/uwdart.svg)](https://pub.dartlang.org/packages/uwdart)
 
 # UWDart
 Waterloo OpenData Client in Dart. UWDart will supports all OpenData endpoints, and will processes all returned data in JSON.
