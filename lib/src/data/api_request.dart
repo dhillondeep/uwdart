@@ -20,16 +20,16 @@ Future<APIResponse> createRequest(Client client, List<String> args,
   String apiUrl = "";
 
   if (args != null && args.length > 0) {
-    apiUrl = URLPrefix + args.join("/") + ".json?" + "key=" + client.getKey();
+    apiUrl = URLPrefix + args.join("/") + ".json?" + "key=" + client.key;
   } else {
-    apiUrl = URLPrefix + "key=" + client.getKey();
+    apiUrl = URLPrefix + "key=" + client.key;
   }
 
   if (filter != null && filter.length > 0) {
     apiUrl += "&" + filter.join("&");
   }
 
-  http.Client httpClient = client.getHttpClient();
+  http.BaseClient httpClient = client.httpClient;
 
   return httpClient.get(apiUrl).then((responseData) {
     int internalCode = responseData.statusCode;

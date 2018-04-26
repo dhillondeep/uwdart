@@ -1,11 +1,16 @@
+## 0.0.5
+### Added
+- Added browser and io version of the library
+
+### Modified
+- Generic open, close and makeRequest functions removed
+- Endpoints provided through one class: UWDart
+
 ## 0.0.4
 ### Added
 - Static ResponseParser
 - Added Static types where ever possible.
 - Exported API Endpoint for client to use.
-
-### Modified
-- Every Endpoint now uses ResponseParser to cast from map to objects.
 
 ## 0.0.3
 ### Added

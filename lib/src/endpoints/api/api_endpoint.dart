@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:uwdart/src/api/model/api_changelog.dart';
-import 'package:uwdart/src/api/model/api_method.dart';
-import 'package:uwdart/src/api/model/api_service.dart';
-import 'package:uwdart/src/api/model/api_usage.dart';
-import 'package:uwdart/src/api/model/api_version.dart';
+import 'package:uwdart/src/endpoints/api/model/api_changelog.dart';
+import 'package:uwdart/src/endpoints/api/model/api_method.dart';
+import 'package:uwdart/src/endpoints/api/model/api_service.dart';
+import 'package:uwdart/src/endpoints/api/model/api_usage.dart';
+import 'package:uwdart/src/endpoints/api/model/api_version.dart';
 import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/base/endpoints.dart';
 import 'package:uwdart/src/base/uw_endpoint.dart';

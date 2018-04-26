@@ -3,6 +3,9 @@
 *.iws
 .idea/
 .DS_Store
+example/ex.dart
+example/key.txt
+example/test.html
 
 # Files and directories created by pub
 .dart_tool/

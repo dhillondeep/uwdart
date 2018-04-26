@@ -4,9 +4,9 @@ import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/base/endpoints.dart';
 import 'package:uwdart/src/base/uw_endpoint.dart';
 import 'package:uwdart/src/data/api_request.dart';
-import 'package:uwdart/src/news/model/news_base.dart';
-import 'package:uwdart/src/news/model/news_detailed.dart';
-import 'package:uwdart/src/news/model/news_site.dart';
+import 'package:uwdart/src/endpoints/news/model/news_base.dart';
+import 'package:uwdart/src/endpoints/news/model/news_detailed.dart';
+import 'package:uwdart/src/endpoints/news/model/news_site.dart';
 
 /// NewsEndpoint provides a wrapper around the raw news Endpoint from UW Open Data API
 /// https://github.com/uWaterloo/api-documentation#news
