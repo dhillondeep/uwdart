@@ -7,6 +7,11 @@ Future main() async {
 
   // Create the client
   UWDart uwClient = new UWDart(apiKey);
+  
+  // create raw requests
+  uwClient.makeRawRequest(["foodservices", "watcard"]).then((data) {
+    print(data.raw);
+  });
 
   // Gives access to all the courses available at UW
   await uwClient.course.getAllCourses().then((courses) async {

@@ -4,6 +4,7 @@ import 'package:uwdart/src/base/client.dart';
 import 'package:http/http.dart' as http;
 import 'package:uwdart/src/endpoints/course/course_endpoint.dart';
 import 'package:uwdart/src/data/model/api_response.dart' as response;
+import 'package:uwdart/src/endpoints/foodservices/foodservices_endpoint.dart';
 import 'package:uwdart/src/endpoints/news/news_endpoint.dart';
 import 'package:uwdart/src/data/api_request.dart' as request;
 
@@ -13,6 +14,7 @@ abstract class UWDartBase {
   ApiEndpoint _apiEndpoint;
   CourseEndpoint _courseEndpoint;
   NewsEndpoint _newsEndpoint;
+  FoodServicesEndpoint _foodServicesEndpoint;
 
   /// Initializes UWDart API. This is a base class and hence will depend on the
   /// child implementation
@@ -23,6 +25,7 @@ abstract class UWDartBase {
     _apiEndpoint = new ApiEndpoint(_client);
     _courseEndpoint = new CourseEndpoint(_client);
     _newsEndpoint = new NewsEndpoint(_client);
+    _foodServicesEndpoint = new FoodServicesEndpoint(_client);
   }
 
   /// Close the connection for the Client. This is the responsibility of the user to close
@@ -35,7 +38,7 @@ abstract class UWDartBase {
   /// value pair. This is useful when testing the API. Otherwise built in API
   /// parsers must be used since they do all the heavy lifting for you.
   Future<response.APIResponse> makeRawRequest(List<String> args, [List<String> filter = null]) {
-    return request.createRequest(_client, args).catchError((error) => throw error);
+    return request.CreateRequest(_client, args).catchError((error) => throw error);
   }
 
   NewsEndpoint get news => _newsEndpoint;
@@ -43,4 +46,6 @@ abstract class UWDartBase {
   CourseEndpoint get course => _courseEndpoint;
 
   ApiEndpoint get api => _apiEndpoint;
+
+  FoodServicesEndpoint get foodServices => _foodServicesEndpoint;
 }

@@ -1,6 +1,7 @@
 ## 0.0.5
 ### Added
 - Added browser and io version of the library
+- Added Food Services Endpoint
 
 ### Modified
 - Generic open, close and makeRequest functions removed

@@ -6,16 +6,17 @@ import 'dart:mirrors';
 import 'package:dartson/dartson.dart';
 import 'package:http/http.dart' as http;
 import 'package:uwdart/src/base/client.dart';
+import 'package:uwdart/src/base/endpoints.dart';
 import 'package:uwdart/src/data/model/api_response.dart';
 
-final String URLPrefix = "https://api.uwaterloo.ca/v2/";
+final String URLPrefix = API_PREFIX;
 final int SUCCESS_CODE = 200;
 Dartson dson = new Dartson.JSON();
 
 /// Sends an HTTP GET request to UW API with a client provided. This Client
 /// is gathered from http client. It also takes in a List of [String] that
 /// are arguments which will be append to the URL
-Future<APIResponse> createRequest(Client client, List<String> args,
+Future<APIResponse> CreateRequest(Client client, List<String> args,
     [List<String> filter = null]) async {
   String apiUrl = "";
 
@@ -93,7 +94,7 @@ class ResponseParser<T> {
 }
 
 /// Verifies the filter key value provided and based on that returns a filter
-List<String> getValidFilter(String keyStart, String keyValue) {
+List<String> GetValidFilter(String keyStart, String keyValue) {
   List<String> filter;
 
   if (keyValue == null) {
