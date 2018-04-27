@@ -1,12 +1,15 @@
 import 'dart:async';
-import 'package:uwdart/src/endpoints/api/api_endpoint.dart';
-import 'package:uwdart/src/base/client.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:uwdart/src/endpoints/course/course_endpoint.dart';
+import 'package:uwdart/src/base/client.dart';
+import 'package:uwdart/src/data/api_request.dart' as request;
 import 'package:uwdart/src/data/model/api_response.dart' as response;
+import 'package:uwdart/src/endpoints/api/api_endpoint.dart';
+import 'package:uwdart/src/endpoints/awards/awards_endpoint.dart';
+import 'package:uwdart/src/endpoints/course/course_endpoint.dart';
+import 'package:uwdart/src/endpoints/feds/feds_endpoint.dart';
 import 'package:uwdart/src/endpoints/foodservices/foodservices_endpoint.dart';
 import 'package:uwdart/src/endpoints/news/news_endpoint.dart';
-import 'package:uwdart/src/data/api_request.dart' as request;
 
 abstract class UWDartBase {
   Client _client;
@@ -15,17 +18,19 @@ abstract class UWDartBase {
   CourseEndpoint _courseEndpoint;
   NewsEndpoint _newsEndpoint;
   FoodServicesEndpoint _foodServicesEndpoint;
+  FedsEndpoint _fedsEndpoint;
+  AwardsEndpoint _awards;
 
   /// Initializes UWDart API. This is a base class and hence will depend on the
   /// child implementation
-  UWDartBase(String key, http.Client client)
-      : _client = new Client(key, client) {
-
+  UWDartBase(String key, http.Client client) : _client = new Client(key, client) {
     // initialize the endpoints
     _apiEndpoint = new ApiEndpoint(_client);
     _courseEndpoint = new CourseEndpoint(_client);
     _newsEndpoint = new NewsEndpoint(_client);
     _foodServicesEndpoint = new FoodServicesEndpoint(_client);
+    _fedsEndpoint = new FedsEndpoint(_client);
+    _awards = new AwardsEndpoint(_client);
   }
 
   /// Close the connection for the Client. This is the responsibility of the user to close
@@ -48,4 +53,8 @@ abstract class UWDartBase {
   ApiEndpoint get api => _apiEndpoint;
 
   FoodServicesEndpoint get foodServices => _foodServicesEndpoint;
+
+  FedsEndpoint get feds => _fedsEndpoint;
+
+  AwardsEndpoint get award => _awards;
 }

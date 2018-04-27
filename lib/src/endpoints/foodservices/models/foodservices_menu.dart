@@ -20,7 +20,7 @@ class FoodServicesMenu {
   }
 }
 
-/// This Data Model is used by [FoodServicesMenu] to wrap data for Menu Outlets
+/// This Data Model is used by [FoodServicesMenu] to wrap data for Menu Outlets.
 @Entity()
 class FoodServicesMenuOutlet {
   String _outletName;
@@ -48,13 +48,14 @@ class FoodServicesMenuOutlet {
   }
 }
 
-/// This Data Model us used by [FoodServicesOutlet] to wrap data for menu detailed information
+/// This Data Model us used by [FoodServicesOutlet] to wrap data for menu detailed information.
 @Entity()
 class FoodServicesOutletMenu {
   String _date;
   String _day;
   FoodServicesMeal _meals;
   String _notes;
+
   String get date => _date;
 
   String get day => _day;
@@ -80,7 +81,7 @@ class FoodServicesOutletMenu {
   }
 }
 
-/// This Data Model is used by [FoodServicesOutletMenu] to wrap data about the meal
+/// This Data Model is used by [FoodServicesOutletMenu] to wrap data about the meal.
 @Entity()
 class FoodServicesMeal {
   List<FoodServicesMenuItem> _lunch;
@@ -99,7 +100,7 @@ class FoodServicesMeal {
   }
 }
 
-/// This Data Model is used by [FoodServicesMeal] to wrap data about meal item
+/// This Data Model is used by [FoodServicesMeal] to wrap data about meal item.
 @Entity()
 class FoodServicesMenuItem {
   String _productName;
@@ -128,7 +129,7 @@ class FoodServicesMenuItem {
   }
 }
 
-/// This Data Model is used by [FoodServicesMenu] to store menu date
+/// This Data Model is used by [FoodServicesMenu] to store menu date.
 @Entity()
 class FoodServicesDate {
   int _week;

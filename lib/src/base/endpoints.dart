@@ -28,3 +28,11 @@ const String FOOD_LOCATIONS_ENDPOINT = "foodservices/locations";
 const String FOOD_WATCARD_ENDPOINT = "foodservices/watcard";
 const String FOOD_ANNOUNCEMENTS_ENDPOINT = "foodservices/announcements";
 const String FOOD_PRODUCTS_ENDPOINT = "foodservices/products";
+
+// feds endpoints
+const String FEDS_EVENTS_ENDPOINT = "feds/events";
+const String FEDS_LOCATIONS_ENDPOINT = "feds/locations";
+
+// awards
+const String AWARDS_UNDERGRADUATE = "awards/undergraduate";
+const String AWARDS_GRADUATE = "awards/graduate";

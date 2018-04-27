@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:uwdart/src/base/client.dart';
 import 'package:uwdart/src/base/endpoints.dart';
 import 'package:uwdart/src/base/uw_endpoint.dart';
+import 'package:uwdart/src/data/api_request.dart';
 import 'package:uwdart/src/endpoints/course/models/course_exam_schedule.dart';
 import 'package:uwdart/src/endpoints/course/models/course_full.dart';
 import 'package:uwdart/src/endpoints/course/models/course_prerequisite.dart';
 import 'package:uwdart/src/endpoints/course/models/course_schedule.dart';
 import 'package:uwdart/src/endpoints/course/models/course_simple.dart';
 import 'package:uwdart/src/endpoints/course/models/course_subject.dart';
-import 'package:uwdart/src/data/api_request.dart';
 
 /// CourseEndpoint provides a wrapper around the raw course Endpoint from UW Open Data API
 /// https://github.com/uWaterloo/api-documentation#course

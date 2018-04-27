@@ -13,14 +13,14 @@ import 'package:uwdart/src/endpoints/news/model/news_site.dart';
 class NewsEndpoint extends UWEndpoint {
   NewsEndpoint(Client client) : super(client);
 
-  /// Returns a list of [NewsSite] model for all types of news gathered. There is no parameter that
+  /// Returns a list of [NewsSite] models for all types of news gathered. There is no parameter that
   /// is needed because it contains a list of all the news there are. Only top 100.
   Future<List<NewsSite>> GetAllNews() async {
     return CreateRequest(client, [NEWS_ENDPOINT])
         .then((data) => new ResponseParser<NewsSite>().parse(data));
   }
 
-  /// Returns a list of [NewsBase] model for all news based on the site provided. The site provided
+  /// Returns a list of [NewsBase] models for all news based on the site provided. The site provided
   /// has to be a [String] like: "engineering". The max news are are 100.
   Future<List<NewsBase>> GetNewsBySite(String site) async {
     return CreateRequest(client, [NEWS_ENDPOINT, site])

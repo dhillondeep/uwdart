@@ -3,9 +3,9 @@ import 'package:uwdart/src/base/models/uw_location.dart';
 import 'package:uwdart/src/base/models/uw_open_hours.dart';
 import 'package:uwdart/src/base/models/uw_special_day.dart';
 
-/// This Data Model wraps the data related to Food Services Location.
+/// This Data Model wraps location data for various FEDS services.
 @Entity()
-class FoodServicesLocation implements UWLocation {
+class FedsLocation implements UWLocation {
   @override
   String building;
 
@@ -52,18 +52,18 @@ class FoodServicesLocation implements UWLocation {
   @Property(name: "special_hours")
   List<UWSpecialDay> specialHours;
 
-  FoodServicesLocationAdditional _additional;
+  FedsLocationAdditional _additional;
 
-  FoodServicesLocationAdditional get additional => _additional;
+  FedsLocationAdditional get additional => _additional;
 
-  set additional(FoodServicesLocationAdditional value) {
+  set additional(FedsLocationAdditional value) {
     _additional = value;
   }
 }
 
-/// This Data Model used by [FoodServicesLocation] wraps additional data provided by the location.
+/// This Data Model used by [FedsLocation] wraps additional data provided by the location.
 @Entity()
-class FoodServicesLocationAdditional {
+class FedsLocationAdditional {
   String _menuUrl;
 
   String get menuUrl => _menuUrl;

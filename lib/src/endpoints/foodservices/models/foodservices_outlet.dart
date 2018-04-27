@@ -1,6 +1,6 @@
 import 'package:dartson/dartson.dart';
 
-/// This Data Model wraps data related to outlets available from Food Services
+/// This Data Model wraps data related to outlets available from Food Services.
 @Entity()
 class FoodServicesOutlet {
   num _outletId;

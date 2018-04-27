@@ -4,6 +4,8 @@
 import 'package:http/browser_client.dart' as http;
 import 'package:uwdart/src/base/uwdart_base.dart';
 
+/// endpoints of UWaterloo Open API
+
 class UWDart extends UWDartBase {
   /// Initializes UWDart Client API based on the key provided. It also opens the
   /// connection with the API.

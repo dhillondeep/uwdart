@@ -7,7 +7,7 @@ Future main() async {
 
   // Create the client
   UWDart uwClient = new UWDart(apiKey);
-  
+
   // create raw requests
   uwClient.makeRawRequest(["foodservices", "watcard"]).then((data) {
     print(data.raw);
@@ -15,9 +15,9 @@ Future main() async {
 
   // Gives access to all the courses available at UW
   await uwClient.course.getAllCourses().then((courses) async {
-    for (int i = 0; i < 50; i++ ) {
+    for (int i = 0; i < 50; i++) {
       print("Title: " + courses[i].title);
-      String catalogNum =  courses[i].catalogNumber;
+      String catalogNum = courses[i].catalogNumber;
       String subject = courses[i].subject;
 
       // based on the subject and catalog number, get detailed info about the package

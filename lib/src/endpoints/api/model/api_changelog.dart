@@ -1,6 +1,6 @@
 import 'package:dartson/dartson.dart';
 
-/// This Data model wraps data related to change logs for the API. It contains typical date
+/// This Data models wraps data related to change logs for the API. It contains typical date
 /// and a list of changes made.
 @Entity()
 class ApiChangelog {

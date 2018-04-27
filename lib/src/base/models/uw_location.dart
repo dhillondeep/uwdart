@@ -18,7 +18,6 @@ class UWLocation {
   List<UWSpecialDay> _specialHours;
   List<String> _datesClosed;
   bool _is24Hrs;
-  Additional _additional;
 
   num get outletId => _outletId;
 
@@ -45,12 +44,6 @@ class UWLocation {
   List<String> get datesClosed => _datesClosed;
 
   bool get is24Hrs => _is24Hrs;
-
-  Additional get additional => _additional;
-
-  set additional(Additional value) {
-    _additional = value;
-  }
 
   @Property(name: "is_24hrs")
   set is24Hrs(bool value) {
@@ -109,18 +102,5 @@ class UWLocation {
   @Property(name: "outlet_id")
   set outletId(num value) {
     _outletId = value;
-  }
-}
-
-/// This Data Model used by [UWLocation] wraps additional data provided by UW Location.
-@Entity()
-class Additional {
-  String _menuUrl;
-
-  String get menuUrl => _menuUrl;
-
-  @Property(name: "menu_url")
-  set menuUrl(String value) {
-    _menuUrl = value;
   }
 }

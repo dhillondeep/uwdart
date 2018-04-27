@@ -4,12 +4,12 @@
 Waterloo OpenData Client in Dart. UWDart will supports all OpenData endpoints, and will processes all returned data in JSON.
 
 This project is under development at the moment but version 0.0.* versions are released. Supported EndPoints:
+- [x] FoodServices
+- [x] Feds
 - [x] Course
+- [x] Awards
 - [x] News
 - [x] API
-- [ ] FoodServices
-- [ ] Feds
-- [ ] Awards
 - [ ] Events
 - [ ] Blogs
 - [ ] Opportunities
@@ -21,7 +21,7 @@ This project is under development at the moment but version 0.0.* versions are r
 - [ ] Building
 - [ ] Poi
 - [ ] Parking
-- [ ]  Transit
+- [ ] Transit
 - [ ] Directory
 - [ ] Wireless
 - [ ] Server
@@ -30,8 +30,7 @@ In order to use this package, check Dart [Package management](pub.dartlang.org) 
 
 The link to the latest version of uwdart is: [https://pub.dartlang.org/packages/uwdart](https://pub.dartlang.org/packages/uwdart)
 
-
-Check [Change Logs](CHANGELOG.md) for all the changes being made.
+Check [ChangeLogs](CHANGELOG.md) for all the changes being made.
 
 ## Waterloo OpenData Api Documentation
 [https://github.com/uWaterloo/api-documentation](https://github.com/uWaterloo/api-documentation)
