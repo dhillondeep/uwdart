@@ -1,106 +1,60 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
 import 'package:uwdart/src/base/models/uw_open_hours.dart';
 import 'package:uwdart/src/base/models/uw_special_day.dart';
 
+part 'uw_location.g.dart';
+
 /// This Data Model wraps a generic UW location and all the properties related to it.
-@Entity()
-class UWLocation {
-  num _outletId;
-  String _outletName;
-  String _building;
-  String _logo;
-  num _latitude;
-  num _longitude;
-  String _description;
-  String _notice;
-  bool _isOpenNow;
-  UWOpeningHours _openingHours;
-  List<UWSpecialDay> _specialHours;
-  List<String> _datesClosed;
-  bool _is24Hrs;
+@BuiltValue(instantiable: false)
+abstract class UWLocation {
+  @BuiltValueField(wireName: "outlet_id")
+  @nullable
+  int get outletId;
 
-  num get outletId => _outletId;
+  @BuiltValueField(wireName: "outlet_name")
+  @nullable
+  String get outletName;
 
-  String get outletName => _outletName;
+  @nullable
+  String get building;
 
-  String get building => _building;
+  @nullable
+  String get logo;
 
-  String get logo => _logo;
+  @nullable
+  double get latitude;
 
-  num get latitude => _latitude;
+  @nullable
+  double get longitude;
 
-  num get longitude => _longitude;
+  @nullable
+  String get description;
 
-  String get description => _description;
+  @nullable
+  String get notice;
 
-  String get notice => _notice;
+  @BuiltValueField(wireName: "is_open_now")
+  @nullable
+  bool get isOpenNow;
 
-  bool get isOpenNow => _isOpenNow;
+  @BuiltValueField(wireName: "opening_hours")
+  @nullable
+  UWOpeningHours get openingHours;
 
-  UWOpeningHours get openingHours => _openingHours;
+  @BuiltValueField(wireName: "special_hours")
+  @nullable
+  BuiltList<UWSpecialDay> get specialHours;
 
-  List<UWSpecialDay> get specialHours => _specialHours;
+  @BuiltValueField(wireName: "dates_closed")
+  @nullable
+  BuiltList<String> get datesClosed;
 
-  List<String> get datesClosed => _datesClosed;
+  @BuiltValueField(wireName: "is_24hrs")
+  @nullable
+  bool get is24Hrs;
 
-  bool get is24Hrs => _is24Hrs;
+  UWLocation rebuild(void updates(UWLocationBuilder b));
 
-  @Property(name: "is_24hrs")
-  set is24Hrs(bool value) {
-    _is24Hrs = value;
-  }
-
-  @Property(name: "dates_closed")
-  set datesClosed(List<String> value) {
-    _datesClosed = value;
-  }
-
-  @Property(name: "special_hours")
-  set specialHours(List<UWSpecialDay> value) {
-    _specialHours = value;
-  }
-
-  @Property(name: "opening_hours")
-  set openingHours(UWOpeningHours value) {
-    _openingHours = value;
-  }
-
-  @Property(name: "is_open_now")
-  set isOpenNow(bool value) {
-    _isOpenNow = value;
-  }
-
-  set notice(String value) {
-    _notice = value;
-  }
-
-  set description(String value) {
-    _description = value;
-  }
-
-  set longitude(num value) {
-    _longitude = value;
-  }
-
-  set latitude(num value) {
-    _latitude = value;
-  }
-
-  set logo(String value) {
-    _logo = value;
-  }
-
-  set building(String value) {
-    _building = value;
-  }
-
-  @Property(name: "outlet_name")
-  set outletName(String value) {
-    _outletName = value;
-  }
-
-  @Property(name: "outlet_id")
-  set outletId(num value) {
-    _outletId = value;
-  }
+  UWLocationBuilder toBuilder();
 }

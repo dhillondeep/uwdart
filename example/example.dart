@@ -29,7 +29,7 @@ Future main() async {
   });
 
   // Gives access to all the news available at UW (top 100)
-  await uwClient.news.GetAllNews().then((news) async {
+  await uwClient.news.GetNews().then((news) async {
     for (var currNews in news) {
       // get news and the link
       print(currNews.title + "    ->   " + currNews.link);

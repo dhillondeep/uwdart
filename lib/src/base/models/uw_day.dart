@@ -1,30 +1,25 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'uw_day.g.dart';
 
 /// This Data Model used by [UWLocation] wraps data related to daily properties of the location.
-@Entity()
-class UWDay {
-  String _openingHour;
-  String _closingHour;
-  bool _isClosed;
+abstract class UWDay extends Object implements Built<UWDay, UWDayBuilder> {
+  @BuiltValueField(wireName: "opening_hour")
+  @nullable
+  String get openingHour;
 
-  String get openingHour => _openingHour;
+  @BuiltValueField(wireName: "closing_hour")
+  @nullable
+  String get closingHour;
 
-  String get closingHour => _closingHour;
+  @BuiltValueField(wireName: "is_closed")
+  @nullable
+  bool get isClosed;
 
-  bool get isClosed => _isClosed;
+  static Serializer<UWDay> get serializer => _$uWDaySerializer;
 
-  @Property(name: "is_closed")
-  set isClosed(bool value) {
-    _isClosed = value;
-  }
+  factory UWDay([updates(UWDayBuilder b)]) = _$UWDay;
 
-  @Property(name: "closing_hour")
-  set closingHour(String value) {
-    _closingHour = value;
-  }
-
-  @Property(name: "opening_hour")
-  set openingHour(String value) {
-    _openingHour = value;
-  }
+  UWDay._();
 }

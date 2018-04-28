@@ -1,78 +1,54 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'course_exam_schedule.g.dart';
 
 /// This Data Model wraps data related to exam schedules. It has a name of the course and examination
 /// information for it's each section.
-@Entity()
-class CourseExamSchedule {
-  String _course;
-  List<CourseExamSection> _sections;
+abstract class CourseExamSchedule implements Built<CourseExamSchedule, CourseExamScheduleBuilder> {
+  @nullable
+  String get course;
 
-  String get course => _course;
+  @nullable
+  BuiltList<CourseExamSection> get sections;
 
-  List<CourseExamSection> get sections => _sections;
+  CourseExamSchedule._();
 
-  set sections(List<CourseExamSection> value) {
-    _sections = value;
-  }
+  static Serializer<CourseExamSchedule> get serializer => _$courseExamScheduleSerializer;
 
-  set course(String value) {
-    _course = value;
-  }
+  factory CourseExamSchedule([updates(CourseExamScheduleBuilder b)]) = _$CourseExamSchedule;
 }
 
 /// This Data Model is used by [CourseExamSchedule] to warp exam schedule information for each
 /// individual section.
-@Entity()
-class CourseExamSection {
-  String _section;
-  String _day;
-  String _date;
-  String _startTime;
-  String _endTime;
-  String _location;
-  String _notes;
+abstract class CourseExamSection implements Built<CourseExamSection, CourseExamSectionBuilder> {
+  @nullable
+  String get section;
 
-  String get section => _section;
+  @nullable
+  String get day;
 
-  String get day => _day;
+  @nullable
+  String get date;
 
-  String get date => _date;
+  @BuiltValueField(wireName: "start_time")
+  @nullable
+  String get startTime;
 
-  String get startTime => _startTime;
+  @BuiltValueField(wireName: "end_time")
+  @nullable
+  String get endTime;
 
-  String get endTime => _endTime;
+  @nullable
+  String get location;
 
-  String get location => _location;
+  @nullable
+  String get notes;
 
-  String get notes => _notes;
+  CourseExamSection._();
 
-  set notes(String value) {
-    _notes = value;
-  }
+  static Serializer<CourseExamSection> get serializer => _$courseExamSectionSerializer;
 
-  set location(String value) {
-    _location = value;
-  }
-
-  @Property(name: "end_time")
-  set endTime(String value) {
-    _endTime = value;
-  }
-
-  @Property(name: "start_time")
-  set startTime(String value) {
-    _startTime = value;
-  }
-
-  set date(String value) {
-    _date = value;
-  }
-
-  set day(String value) {
-    _day = value;
-  }
-
-  set section(String value) {
-    _section = value;
-  }
+  factory CourseExamSection([updates(CourseExamSectionBuilder b)]) = _$CourseExamSection;
 }

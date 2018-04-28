@@ -1,59 +1,38 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'course_subject.g.dart';
 
 /// This Data Model wraps more data than simple course data. It stores subject data along with
 /// description and academic level.
-@Entity()
-class CourseSubject {
-  String _courseId;
-  String _subject;
-  String _catalogNumber;
-  String _title;
-  num _units;
-  String _description;
-  String _academicLevel;
+abstract class CourseSubject implements Built<CourseSubject, CourseSubjectBuilder> {
+  @BuiltValueField(wireName: "course_id")
+  @nullable
+  String get courseId;
 
-  String get courseId => _courseId;
+  @nullable
+  String get subject;
 
-  String get subject => _subject;
+  @BuiltValueField(wireName: "catalog_number")
+  @nullable
+  String get catalogNumber;
 
-  String get catalogNumber => _catalogNumber;
+  @nullable
+  String get title;
 
-  String get title => _title;
+  @nullable
+  num get units;
 
-  num get units => _units;
+  @nullable
+  String get description;
 
-  String get description => _description;
+  @BuiltValueField(wireName: "academic_level")
+  @nullable
+  String get academicLevel;
 
-  String get academicLevel => _academicLevel;
+  CourseSubject._();
 
-  @Property(name: "course_id")
-  set courseId(String value) {
-    _courseId = value;
-  }
+  static Serializer<CourseSubject> get serializer => _$courseSubjectSerializer;
 
-  set subject(String value) {
-    _subject = value;
-  }
-
-  @Property(name: "catalog_number")
-  set catalogNumber(String value) {
-    _catalogNumber = value;
-  }
-
-  set title(String value) {
-    _title = value;
-  }
-
-  set units(num value) {
-    _units = value;
-  }
-
-  set description(String value) {
-    _description = value;
-  }
-
-  @Property(name: "academic_level")
-  set academicLevel(String value) {
-    _academicLevel = value;
-  }
+  factory CourseSubject([updates(CourseSubjectBuilder b)]) = _$CourseSubject;
 }

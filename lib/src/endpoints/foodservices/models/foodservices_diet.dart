@@ -1,22 +1,21 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'foodservices_diet.g.dart';
 
 /// This Data Model wraps data related to Food Services Diet.
-@Entity()
-class FoodServicesDiet {
-  num _dietId;
-  String _dietType;
+abstract class FoodServicesDiet implements Built<FoodServicesDiet, FoodServicesDietBuilder> {
+  @BuiltValueField(wireName: "diet_id")
+  @nullable
+  int get dietId;
 
-  int get dietId => _dietId;
+  @BuiltValueField(wireName: "diet_type")
+  @nullable
+  String get dietType;
 
-  String get dietType => _dietType;
+  FoodServicesDiet._();
 
-  @Property(name: "diet_type")
-  set dietType(String value) {
-    _dietType = value;
-  }
+  static Serializer<FoodServicesDiet> get serializer => _$foodServicesDietSerializer;
 
-  @Property(name: "diet_id")
-  set dietId(num value) {
-    _dietId = value;
-  }
+  factory FoodServicesDiet([updates(FoodServicesDietBuilder b)]) = _$FoodServicesDiet;
 }

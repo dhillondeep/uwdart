@@ -1,29 +1,22 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/data/model/meta.dart';
+
+part 'api_response.g.dart';
 
 /// This Data Model wraps the raw response from the UW API and provides getters and setters for
 /// various fields. It however also provides an access to the raw response as a string
-@Entity()
-class APIResponse {
-  Meta _meta;
-  List<Map<String, dynamic>> _data;
-  String _raw;
+abstract class APIResponse implements Built<APIResponse, APIResponseBuilder> {
+  @nullable
+  Meta get meta;
 
-  Meta get meta => _meta;
+  List<Map<String, Object>> get data;
 
-  List<Map<String, dynamic>> get data => _data;
+  String get raw;
 
-  String get raw => _raw;
+  static Serializer<APIResponse> get serializer => _$aPIResponseSerializer;
 
-  set data(List<Map<String, dynamic>> value) {
-    _data = value;
-  }
+  factory APIResponse([updates(APIResponseBuilder b)]) = _$APIResponse;
 
-  set meta(Meta value) {
-    _meta = value;
-  }
-
-  set raw(String raw) {
-    _raw = raw;
-  }
+  APIResponse._();
 }

@@ -1,49 +1,27 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'meta.g.dart';
 
 /// This Data Model is a wrapper for meta information about the API request
-@Entity()
-class Meta {
-  int _requests;
-  int _timestamp;
-  int _status;
-  int _version;
-  int _methodId;
-  String _message;
+abstract class Meta implements Built<Meta, MetaBuilder> {
+  int get requests;
 
-  int get requests => _requests;
+  int get timestamp;
 
-  int get timestamp => _timestamp;
+  int get status;
 
-  int get status => _status;
+  @nullable
+  int get version;
 
-  int get version => _version;
+  @nullable
+  int get methodId;
 
-  int get methodId => _methodId;
+  String get message;
 
-  String get message => _message;
+  Meta._();
 
-  set message(String value) {
-    _message = value;
-  }
+  factory Meta([updates(MetaBuilder b)]) = _$Meta;
 
-  @Property(name: "methd_id")
-  set methodId(int value) {
-    _methodId = value;
-  }
-
-  set version(int value) {
-    _version = value;
-  }
-
-  set status(int value) {
-    _status = value;
-  }
-
-  set timestamp(int value) {
-    _timestamp = value;
-  }
-
-  set requests(int value) {
-    _requests = value;
-  }
+  static Serializer<Meta> get serializer => _$metaSerializer;
 }

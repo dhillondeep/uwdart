@@ -1,45 +1,33 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'api_method.g.dart';
 
 /// This Data Model wraps data related to API methods that are available for every service.
-@Entity()
-class ApiMethod {
-  int _methodId;
-  String _methodUrl;
-  int _serviceId;
-  String _serviceName;
-  List<String> _parameters;
+abstract class ApiMethod implements Built<ApiMethod, ApiMethodBuilder> {
+  @BuiltValueField(wireName: "method_id")
+  @nullable
+  int get methodId;
 
-  int get methodId => _methodId;
+  @BuiltValueField(wireName: "method_url")
+  @nullable
+  String get methodUrl;
 
-  String get methodUrl => _methodUrl;
+  @BuiltValueField(wireName: "service_id")
+  @nullable
+  int get serviceId;
 
-  int get serviceId => _serviceId;
+  @BuiltValueField(wireName: "service_name")
+  @nullable
+  String get serviceName;
 
-  String get serviceName => _serviceName;
+  @nullable
+  BuiltList<String> get parameters;
 
-  List<String> get parameters => _parameters;
+  ApiMethod._();
 
-  @Property(name: "method_id")
-  set methodId(int value) {
-    _methodId = value;
-  }
+  static Serializer<ApiMethod> get serializer => _$apiMethodSerializer;
 
-  @Property(name: "method_url")
-  set methodUrl(String value) {
-    _methodUrl = value;
-  }
-
-  set parameters(List<String> value) {
-    _parameters = value;
-  }
-
-  @Property(name: "service_name")
-  set serviceName(String value) {
-    _serviceName = value;
-  }
-
-  @Property(name: "service_id")
-  set serviceId(int value) {
-    _serviceId = value;
-  }
+  factory ApiMethod([updates(ApiMethodBuilder b)]) = _$ApiMethod;
 }

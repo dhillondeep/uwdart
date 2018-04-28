@@ -14,20 +14,18 @@ class FedsEndpoint extends UWEndpoint {
   FedsEndpoint(Client client) : super(client);
 
   /// Get's all the upcoming feds events and provides a basic data model.
-  Future<List<FedsEvent>> getUpcomingEvents() {
-    return CreateRequest(client, [FEDS_EVENTS_ENDPOINT])
-        .then((data) => new ResponseParser<FedsEvent>().parse(data));
+  Future<List<FedsEvent>> getUpcomingEvents() async {
+    return new Fetcher(FedsEvent.serializer, client).fetch([FEDS_EVENTS_ENDPOINT]);
   }
 
   /// Get's a detailed feds event data model based on the id of the event.
-  Future<FedsEventDetailed> getEvent(String id) {
-    return CreateRequest(client, [FEDS_EVENTS_ENDPOINT, id])
-        .then((data) => new ResponseParser<FedsEventDetailed>().parse(data)[0]);
+  Future<FedsEventDetailed> getEvent(String id) async {
+    return new Fetcher(FedsEventDetailed.serializer, client)
+        .fetchSingle([FEDS_EVENTS_ENDPOINT, id]);
   }
 
   /// Get's location of all the feds services.
   Future<List<FedsLocation>> getLocations() {
-    return CreateRequest(client, [FEDS_LOCATIONS_ENDPOINT])
-        .then((data) => new ResponseParser<FedsLocation>().parse(data));
+    return new Fetcher(FedsLocation.serializer, client).fetch([FEDS_LOCATIONS_ENDPOINT]);
   }
 }

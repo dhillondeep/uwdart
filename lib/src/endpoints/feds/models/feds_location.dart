@@ -1,75 +1,35 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/base/models/uw_location.dart';
 import 'package:uwdart/src/base/models/uw_open_hours.dart';
 import 'package:uwdart/src/base/models/uw_special_day.dart';
 
+part 'feds_location.g.dart';
+
 /// This Data Model wraps location data for various FEDS services.
-@Entity()
-class FedsLocation implements UWLocation {
-  @override
-  String building;
+abstract class FedsLocation extends Object
+    implements UWLocation, Built<FedsLocation, FedsLocationBuilder> {
+  FedsLocationAdditional get additional;
 
-  @override
-  @Property(name: "dates_closed")
-  List<String> datesClosed;
+  static Serializer<FedsLocation> get serializer => _$fedsLocationSerializer;
 
-  @override
-  String description;
+  factory FedsLocation([updates(FedsLocationBuilder b)]) = _$FedsLocation;
 
-  @override
-  @Property(name: "is_24hrs")
-  bool is24Hrs;
-
-  @override
-  @Property(name: "is_open_now")
-  bool isOpenNow;
-
-  @override
-  num latitude;
-
-  @override
-  String logo;
-
-  @override
-  num longitude;
-
-  @override
-  String notice;
-
-  @override
-  @Property(name: "opening_hours")
-  UWOpeningHours openingHours;
-
-  @override
-  @Property(name: "outlet_id")
-  num outletId;
-
-  @override
-  @Property(name: "outlet_name")
-  String outletName;
-
-  @override
-  @Property(name: "special_hours")
-  List<UWSpecialDay> specialHours;
-
-  FedsLocationAdditional _additional;
-
-  FedsLocationAdditional get additional => _additional;
-
-  set additional(FedsLocationAdditional value) {
-    _additional = value;
-  }
+  FedsLocation._();
 }
 
 /// This Data Model used by [FedsLocation] wraps additional data provided by the location.
-@Entity()
-class FedsLocationAdditional {
-  String _menuUrl;
+abstract class FedsLocationAdditional extends Object
+    implements Built<FedsLocationAdditional, FedsLocationAdditionalBuilder> {
+  @BuiltValueField(wireName: "menu_url")
+  @nullable
+  String get menuUrl;
 
-  String get menuUrl => _menuUrl;
+  static Serializer<FedsLocationAdditional> get serializer => _$fedsLocationAdditionalSerializer;
 
-  @Property(name: "menu_url")
-  set menuUrl(String value) {
-    _menuUrl = value;
-  }
+  factory FedsLocationAdditional([updates(FedsLocationAdditionalBuilder b)]) =
+      _$FedsLocationAdditional;
+
+  FedsLocationAdditional._();
 }

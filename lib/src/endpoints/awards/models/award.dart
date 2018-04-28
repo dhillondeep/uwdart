@@ -1,172 +1,101 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'award.g.dart';
 
 /// This Data Model warps data from Awards Endpoint. It is used for both undergraduate
 /// and graduate awards.
-@Entity()
-class Award {
-  num _id;
-  String _title;
-  String _status;
-  String _value;
-  List<String> _type;
-  String _description;
-  List<String> _citizenship;
-  List<String> _programs;
-  AwardApplication _application;
-  AwardDeadline _deadlines;
-  List<String> _links;
-  String _contact;
-  num _vid;
-  String _link;
+abstract class Award extends Object implements Built<Award, AwardBuilder> {
+  @nullable
+  int get id;
 
-  num get id => _id;
+  @nullable
+  String get title;
 
-  String get title => _title;
+  @nullable
+  String get status;
 
-  String get status => _status;
+  @nullable
+  String get value;
 
-  String get value => _value;
+  @nullable
+  BuiltList<String> get type;
 
-  List<String> get type => _type;
+  @nullable
+  String get description;
 
-  String get description => _description;
+  @nullable
+  BuiltList<String> get citizenship;
 
-  List<String> get citizenship => _citizenship;
+  @nullable
+  BuiltList<String> get programs;
 
-  List<String> get programs => _programs;
+  @nullable
+  AwardApplication get application;
 
-  AwardApplication get application => _application;
+  @nullable
+  AwardDeadline get deadlines;
 
-  AwardDeadline get deadlines => _deadlines;
+  @nullable
+  BuiltList<String> get links;
 
-  List<String> get links => _links;
+  @nullable
+  String get contact;
 
-  String get contact => _contact;
+  @nullable
+  int get vid;
 
-  num get vid => _vid;
+  @nullable
+  String get link;
 
-  String get link => _link;
+  static Serializer<Award> get serializer => _$awardSerializer;
 
-  set link(String value) {
-    _link = value;
-  }
+  factory Award([updates(AwardBuilder b)]) = _$Award;
 
-  set vid(num value) {
-    _vid = value;
-  }
-
-  set contact(String value) {
-    _contact = value;
-  }
-
-  set links(List<String> value) {
-    _links = value;
-  }
-
-  set deadlines(AwardDeadline value) {
-    _deadlines = value;
-  }
-
-  set application(AwardApplication value) {
-    _application = value;
-  }
-
-  set programs(List<String> value) {
-    _programs = value;
-  }
-
-  set citizenship(List<String> value) {
-    _citizenship = value;
-  }
-
-  set description(String value) {
-    _description = value;
-  }
-
-  set type(List<String> value) {
-    _type = value;
-  }
-
-  set value(String value) {
-    _value = value;
-  }
-
-  set status(String value) {
-    _status = value;
-  }
-
-  set title(String value) {
-    _title = value;
-  }
-
-  set id(num value) {
-    _id = value;
-  }
+  Award._();
 }
 
 /// This Data Model used by [Award] wraps information about award deadline.
-@Entity()
-class AwardDeadline {
-  List<String> _term;
-  List<String> _application;
-  String _extended;
+abstract class AwardDeadline extends Object implements Built<AwardDeadline, AwardDeadlineBuilder> {
+  @nullable
+  BuiltList<String> get term;
 
-  List<String> get term => _term;
+  @nullable
+  BuiltList<String> get application;
 
-  List<String> get application => _application;
+  @nullable
+  String get extended;
 
-  String get extended => _extended;
+  static Serializer<AwardDeadline> get serializer => _$awardDeadlineSerializer;
 
-  set extended(String value) {
-    _extended = value;
-  }
+  factory AwardDeadline([updates(AwardDeadlineBuilder b)]) = _$AwardDeadline;
 
-  set application(List<String> value) {
-    _application = value;
-  }
-
-  set term(List<String> value) {
-    _term = value;
-  }
+  AwardDeadline._();
 }
 
 /// This Data Model used by [Award] wraps information about award application.
-@Entity()
-class AwardApplication {
-  List<String> _type;
-  List<String> _enrollmentYear;
-  List<String> _eligibility;
-  List<String> _instructions;
-  List<String> _additional;
+abstract class AwardApplication extends Object
+    implements Built<AwardApplication, AwardApplicationBuilder> {
+  @nullable
+  BuiltList<String> get type;
 
-  List<String> get type => _type;
+  @BuiltValueField(wireName: "enrollment_year")
+  @nullable
+  BuiltList<String> get enrollmentYear;
 
-  List<String> get enrollmentYear => _enrollmentYear;
+  @nullable
+  BuiltList<String> get eligibility;
 
-  List<String> get eligibility => _eligibility;
+  @nullable
+  BuiltList<String> get instructions;
 
-  List<String> get instructions => _instructions;
+  @nullable
+  BuiltList<String> get additional;
 
-  List<String> get additional => _additional;
+  static Serializer<AwardApplication> get serializer => _$awardApplicationSerializer;
 
-  set additional(List<String> value) {
-    _additional = value;
-  }
+  factory AwardApplication([updates(AwardApplicationBuilder b)]) = _$AwardApplication;
 
-  set instructions(List<String> value) {
-    _instructions = value;
-  }
-
-  set eligibility(List<String> value) {
-    _eligibility = value;
-  }
-
-  @Property(name: "enrollment_year")
-  set enrollmentYear(List<String> value) {
-    _enrollmentYear = value;
-  }
-
-  set type(List<String> value) {
-    _type = value;
-  }
+  AwardApplication._();
 }

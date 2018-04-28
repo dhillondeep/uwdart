@@ -18,35 +18,30 @@ class ApiEndpoint extends UWEndpoint {
   /// Get's the usage of API by the user of the key and provides an [ApiUsage] object
   /// that contains information regarding that.
   Future<ApiUsage> getUsage() async {
-    return CreateRequest(client, [API_USAGE_ENDPOINT])
-        .then((data) => new ResponseParser<ApiUsage>().parse(data)[0]);
+    return new Fetcher(ApiUsage.serializer, client).fetchSingle([API_USAGE_ENDPOINT]);
   }
 
   /// Get's the services that are available through UW Open data API and it provides
   /// a list of [ApiService] objects that contain information regarding that.
   Future<List<ApiService>> getServices() async {
-    return CreateRequest(client, [API_SERVICES_ENDPOINT])
-        .then((data) => new ResponseParser<ApiService>().parse(data));
+    return new Fetcher(ApiService.serializer, client).fetch([API_SERVICES_ENDPOINT]);
   }
 
   /// Get's the methods that are available that are available for all the services. It provides
   /// a list of [ApiMethod] objects that contain information regarding that.
   Future<List<ApiMethod>> getMethods() async {
-    return CreateRequest(client, [API_METHODS_ENDPOINT])
-        .then((data) => new ResponseParser<ApiMethod>().parse(data));
+    return new Fetcher(ApiMethod.serializer, client).fetch([API_METHODS_ENDPOINT]);
   }
 
   /// Get's the versions of API as it has progressed throughout the years. It provides a list
   /// of [ApiVersion] objects that contain information regarding that.
   Future<List<ApiVersion>> getVersions() async {
-    return CreateRequest(client, [API_VERSIONS_ENDPOINT])
-        .then((data) => new ResponseParser<ApiVersion>().parse(data));
+    return new Fetcher(ApiVersion.serializer, client).fetch([API_VERSIONS_ENDPOINT]);
   }
 
   /// Get's the change logs as the API has developed throughout the years. It provides a list
   /// of [ApiChangelog] objects that contain information regarding that.
   Future<List<ApiChangelog>> getChangelog() async {
-    return CreateRequest(client, [API_CHANGELOG_ENDPOINT])
-        .then((data) => new ResponseParser<ApiChangelog>().parse(data));
+    return new Fetcher(ApiChangelog.serializer, client).fetch([API_CHANGELOG_ENDPOINT]);
   }
 }

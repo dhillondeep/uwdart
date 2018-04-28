@@ -1,49 +1,18 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+import 'package:uwdart/src/endpoints/news/model/news_base.dart';
+
+part 'news_site.g.dart';
 
 /// This Data Model the basic data plus the site data, which is parsed from the
 /// UW news API. This is provided when search is the most broad.
-@Entity()
-class NewsSite {
-  num _id;
-  String _title;
-  String _link;
-  String _published;
-  String _updated;
-  String _site;
+abstract class NewsSite implements NewsBase, Built<NewsSite, NewsSiteBuilder> {
+  @nullable
+  String get site;
 
-  num get id => _id;
+  NewsSite._();
 
-  String get title => _title;
+  static Serializer<NewsSite> get serializer => _$newsSiteSerializer;
 
-  String get link => _link;
-
-  String get published => _published;
-
-  String get updated => _updated;
-
-  String get site => _site;
-
-  set updated(String value) {
-    _updated = value;
-  }
-
-  set published(String value) {
-    _published = value;
-  }
-
-  set link(String value) {
-    _link = value;
-  }
-
-  set title(String value) {
-    _title = value;
-  }
-
-  set id(num value) {
-    _id = value;
-  }
-
-  set site(String value) {
-    _site = value;
-  }
+  factory NewsSite([updates(NewsSiteBuilder b)]) = _$NewsSite;
 }

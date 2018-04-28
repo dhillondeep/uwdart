@@ -9,6 +9,10 @@ import 'package:http/http.dart' as http;
 /// immutable and hence, connection has to be closed and a new Client will be
 /// created by OpenConnection.
 
+/// This way this [Client] object can be passed one connected. Fields are
+/// immutable and hence, connection has to be closed and a new Client will be
+/// created by OpenConnection.
+
 class Client {
   final String _key;
   http.Client _client;

@@ -1,21 +1,23 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'foodservices_annoucement.g.dart';
 
 /// This Data Model wraps the data related to Food Services Announcement.
-@Entity()
-class FoodServicesAnnouncement {
-  String _date;
-  String _adText;
+abstract class FoodServicesAnnouncement
+    implements Built<FoodServicesAnnouncement, FoodServicesAnnouncementBuilder> {
+  @nullable
+  String get date;
 
-  String get date => _date;
+  @BuiltValueField(wireName: "ad_text")
+  @nullable
+  String get adText;
 
-  String get adText => _adText;
+  FoodServicesAnnouncement._();
 
-  set adText(String value) {
-    _adText = value;
-  }
+  static Serializer<FoodServicesAnnouncement> get serializer =>
+      _$foodServicesAnnouncementSerializer;
 
-  @Property(name: "ad_text")
-  set date(String value) {
-    _date = value;
-  }
+  factory FoodServicesAnnouncement([updates(FoodServicesAnnouncementBuilder b)]) =
+      _$FoodServicesAnnouncement;
 }

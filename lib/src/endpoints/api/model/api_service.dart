@@ -1,60 +1,48 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'api_service.g.dart';
 
 /// This Data Model wraps data related to all the API services that are offered through UW
 /// Open Data API.
-@Entity()
-class ApiService {
-  int _serviceId;
-  String _serviceName;
-  String _serviceUrl;
-  List<ApiServiceMethod> _methods;
+abstract class ApiService implements Built<ApiService, ApiServiceBuilder> {
+  @BuiltValueField(wireName: "service_id")
+  @nullable
+  int get serviceId;
 
-  int get serviceId => _serviceId;
+  @BuiltValueField(wireName: "service_name")
+  @nullable
+  String get serviceName;
 
-  String get serviceName => _serviceName;
+  @BuiltValueField(wireName: "service_url")
+  @nullable
+  String get serviceUrl;
 
-  String get serviceUrl => _serviceUrl;
+  @nullable
+  BuiltList<ApiServiceMethod> get methods;
 
-  List<ApiServiceMethod> get methods => _methods;
+  ApiService._();
 
-  @Property(name: "service_id")
-  set serviceId(int value) {
-    _serviceId = value;
-  }
+  static Serializer<ApiService> get serializer => _$apiServiceSerializer;
 
-  set methods(List<ApiServiceMethod> value) {
-    _methods = value;
-  }
-
-  @Property(name: "service_url")
-  set serviceUrl(String value) {
-    _serviceUrl = value;
-  }
-
-  @Property(name: "service_name")
-  set serviceName(String value) {
-    _serviceName = value;
-  }
+  factory ApiService([updates(ApiServiceBuilder b)]) = _$ApiService;
 }
 
 /// This Data Model is used by [ApiService] to store brief information about method available
 /// for each API service.
-@Entity()
-class ApiServiceMethod {
-  num _methodId;
-  String _methodUrl;
+abstract class ApiServiceMethod implements Built<ApiServiceMethod, ApiServiceMethodBuilder> {
+  @BuiltValueField(wireName: "method_id")
+  @nullable
+  int get methodId;
 
-  num get methodId => _methodId;
+  @BuiltValueField(wireName: "method_url")
+  @nullable
+  String get methodUrl;
 
-  String get methodUrl => _methodUrl;
+  ApiServiceMethod._();
 
-  @Property(name: "method_url")
-  set methodUrl(String value) {
-    _methodUrl = value;
-  }
+  static Serializer<ApiServiceMethod> get serializer => _$apiServiceMethodSerializer;
 
-  @Property(name: "method_id")
-  set methodId(num value) {
-    _methodId = value;
-  }
+  factory ApiServiceMethod([updates(ApiServiceMethodBuilder b)]) = _$ApiServiceMethod;
 }

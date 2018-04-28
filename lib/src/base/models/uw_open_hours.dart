@@ -1,56 +1,29 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/base/models/uw_day.dart';
 
+part 'uw_open_hours.g.dart';
+
 /// This Data Model used by [UWLocation] wraps data related to hours properties of the location.
-@Entity()
-class UWOpeningHours {
-  UWDay _sunday;
-  UWDay _monday;
-  UWDay _tuesday;
-  UWDay _wednesday;
-  UWDay _thursday;
-  UWDay _friday;
-  UWDay _saturday;
+abstract class UWOpeningHours extends Object
+    implements Built<UWOpeningHours, UWOpeningHoursBuilder> {
+  UWDay get sunday;
 
-  UWDay get sunday => _sunday;
+  UWDay get monday;
 
-  UWDay get monday => _monday;
+  UWDay get tuesday;
 
-  UWDay get saturday => _saturday;
+  UWDay get wednesday;
 
-  UWDay get friday => _friday;
+  UWDay get thursday;
 
-  UWDay get thursday => _thursday;
+  UWDay get friday;
 
-  UWDay get wednesday => _wednesday;
+  UWDay get saturday;
 
-  UWDay get tuesday => _tuesday;
+  static Serializer<UWOpeningHours> get serializer => _$uWOpeningHoursSerializer;
 
-  set saturday(UWDay value) {
-    _saturday = value;
-  }
+  factory UWOpeningHours([updates(UWOpeningHoursBuilder b)]) = _$UWOpeningHours;
 
-  set friday(UWDay value) {
-    _friday = value;
-  }
-
-  set thursday(UWDay value) {
-    _thursday = value;
-  }
-
-  set wednesday(UWDay value) {
-    _wednesday = value;
-  }
-
-  set tuesday(UWDay value) {
-    _tuesday = value;
-  }
-
-  set monday(UWDay value) {
-    _monday = value;
-  }
-
-  set sunday(UWDay value) {
-    _sunday = value;
-  }
+  UWOpeningHours._();
 }

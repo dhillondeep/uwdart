@@ -1,23 +1,21 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'api_version.g.dart';
 
 /// This Data Model wraps data related to API Versions throughout the years of UW Open Data
 /// API Development.
-@Entity()
-class ApiVersion {
-  double _version;
-  String _releaseDate;
+abstract class ApiVersion implements Built<ApiVersion, ApiVersionBuilder> {
+  @nullable
+  double get version;
 
-  double get version => _version;
+  @BuiltValueField(wireName: "release_date")
+  @nullable
+  String get releaseDate;
 
-  String get releaseDate => _releaseDate;
+  ApiVersion._();
 
-  @Property(name: "release_date")
-  set releaseDate(String value) {
-    _releaseDate = value;
-  }
+  static Serializer<ApiVersion> get serializer => _$apiVersionSerializer;
 
-  @Property(name: "version")
-  set version(double value) {
-    _version = value;
-  }
+  factory ApiVersion([updates(ApiVersionBuilder b)]) = _$ApiVersion;
 }

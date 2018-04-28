@@ -1,6 +1,15 @@
+## 0.0.6
+### Added
+- Made compatible with flutter
+
+### Modified
+- Switched to Dart 2
+- Switched from dartson (reflection) to built_values for JSON serialization
+- Changed News GetAllNews() method to GetNews()
+
 ## 0.0.5
 ### Added
-- Added browser and io version of the library
+- Made compatible with browser and io
 - Added Food Services, Feds, and Awards Endpoints
 
 ### Modified

@@ -1,42 +1,27 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+
+part 'news_base.g.dart';
 
 /// This Data Model wraps basic data provides for each news by UW news API. This is provided
 /// when search is narrowed down to "site" level
-@Entity()
-class NewsBase {
-  num _id;
-  String _title;
-  String _link;
-  String _published;
-  String _updated;
+@BuiltValue(instantiable: false)
+abstract class NewsBase {
+  @nullable
+  int get id;
 
-  num get id => _id;
+  @nullable
+  String get title;
 
-  String get title => _title;
+  @nullable
+  String get link;
 
-  String get link => _link;
+  @nullable
+  String get published;
 
-  String get published => _published;
+  @nullable
+  String get updated;
 
-  String get updated => _updated;
+  NewsBase rebuild(void updates(NewsBaseBuilder b));
 
-  set updated(String value) {
-    _updated = value;
-  }
-
-  set published(String value) {
-    _published = value;
-  }
-
-  set link(String value) {
-    _link = value;
-  }
-
-  set title(String value) {
-    _title = value;
-  }
-
-  set id(num value) {
-    _id = value;
-  }
+  NewsBaseBuilder toBuilder();
 }

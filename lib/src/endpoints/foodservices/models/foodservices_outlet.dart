@@ -1,46 +1,32 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+part 'foodservices_outlet.g.dart';
 
 /// This Data Model wraps data related to outlets available from Food Services.
-@Entity()
-class FoodServicesOutlet {
-  num _outletId;
-  String _outletName;
-  int _hasBreakfast;
-  int _hasLunch;
-  int _hasDinner;
+abstract class FoodServicesOutlet implements Built<FoodServicesOutlet, FoodServicesOutletBuilder> {
+  @BuiltValueField(wireName: "outlet_id")
+  @nullable
+  int get outletId;
 
-  num get outletId => _outletId;
+  @BuiltValueField(wireName: "outlet_name")
+  @nullable
+  String get outletName;
 
-  String get outletName => _outletName;
+  @BuiltValueField(wireName: "has_breakfast")
+  @nullable
+  int get hasBreakfast;
 
-  int get hasDinner => _hasDinner;
+  @BuiltValueField(wireName: "has_lunch")
+  @nullable
+  int get hasLunch;
 
-  int get hasLunch => _hasLunch;
+  @BuiltValueField(wireName: "has_dinner")
+  @nullable
+  int get hasDinner;
 
-  int get hasBreakfast => _hasBreakfast;
+  FoodServicesOutlet._();
 
-  @Property(name: "has_dinner")
-  set hasDinner(int value) {
-    _hasDinner = value;
-  }
+  static Serializer<FoodServicesOutlet> get serializer => _$foodServicesOutletSerializer;
 
-  @Property(name: "has_lunch")
-  set hasLunch(int value) {
-    _hasLunch = value;
-  }
-
-  @Property(name: "has_breakfast")
-  set hasBreakfast(int value) {
-    _hasBreakfast = value;
-  }
-
-  @Property(name: "outlet_name")
-  set outletName(String value) {
-    _outletName = value;
-  }
-
-  @Property(name: "outlet_id")
-  set outletId(num value) {
-    _outletId = value;
-  }
+  factory FoodServicesOutlet([updates(FoodServicesOutletBuilder b)]) = _$FoodServicesOutlet;
 }

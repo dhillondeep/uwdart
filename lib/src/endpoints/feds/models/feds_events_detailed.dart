@@ -1,46 +1,21 @@
-import 'package:dartson/dartson.dart';
-import 'package:uwdart/src/endpoints/feds/models/feds_event.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+import 'package:uwdart/src/endpoints/feds/models/feds_event_base.dart';
+
+part 'feds_events_detailed.g.dart';
 
 /// This Data Model wraps detailed information about FEDS event.
-@Entity()
-class FedsEventDetailed implements FedsEvent {
-  String _description;
-  String _descriptionRaw;
+abstract class FedsEventDetailed extends Object
+    implements FedsEventBase, Built<FedsEventDetailed, FedsEventDetailedBuilder> {
+  String get description;
 
-  @override
-  List<String> categories;
+  @nullable
+  String get descriptionRaw;
 
-  @override
-  String end;
+  static Serializer<FedsEventDetailed> get serializer => _$fedsEventDetailedSerializer;
 
-  @override
-  num id;
+  factory FedsEventDetailed([updates(FedsEventDetailedBuilder b)]) = _$FedsEventDetailed;
 
-  @override
-  String location;
-
-  @override
-  String start;
-
-  @override
-  String title;
-
-  @override
-  String updated;
-
-  @override
-  String url;
-
-  String get description => _description;
-
-  String get descriptionRaw => _descriptionRaw;
-
-  @Property(name: "description_raw")
-  set descriptionRaw(String value) {
-    _descriptionRaw = value;
-  }
-
-  set description(String value) {
-    _description = value;
-  }
+  FedsEventDetailed._();
 }

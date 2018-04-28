@@ -1,58 +1,40 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'foodservices_watcard_vendor.g.dart';
 
 /// This Data Model wraps data related to vendors that accept UW Watcard.
-@Entity()
-class FoodServicesWatcardVendor {
-  num _vendorId;
-  String _vendorName;
-  num _latitude;
-  num _longitude;
-  String _address;
-  String _phoneNumber;
-  String _logo;
+abstract class FoodServicesWatcardVendor
+    implements Built<FoodServicesWatcardVendor, FoodServicesWatcardVendorBuilder> {
+  @BuiltValueField(wireName: "vendor_id")
+  @nullable
+  int get vendorId;
 
-  num get vendorId => _vendorId;
+  @BuiltValueField(wireName: "vendor_name")
+  @nullable
+  String get vendorName;
 
-  String get vendorName => _vendorName;
+  @nullable
+  double get latitude;
 
-  num get latitude => _latitude;
+  @nullable
+  double get longitude;
 
-  num get longitude => _longitude;
+  @nullable
+  String get address;
 
-  String get address => _address;
+  @BuiltValueField(wireName: "phone_number")
+  @nullable
+  String get phoneNumber;
 
-  String get phoneNumber => _phoneNumber;
+  @nullable
+  String get logo;
 
-  String get logo => _logo;
+  FoodServicesWatcardVendor._();
 
-  @Property(name: "vendor_name")
-  set vendorName(String value) {
-    _vendorName = value;
-  }
+  static Serializer<FoodServicesWatcardVendor> get serializer =>
+      _$foodServicesWatcardVendorSerializer;
 
-  @Property(name: "vendor_id")
-  set vendorId(num value) {
-    _vendorId = value;
-  }
-
-  set logo(String value) {
-    _logo = value;
-  }
-
-  @Property(name: "phone_number")
-  set phoneNumber(String value) {
-    _phoneNumber = value;
-  }
-
-  set address(String value) {
-    _address = value;
-  }
-
-  set longitude(num value) {
-    _longitude = value;
-  }
-
-  set latitude(num value) {
-    _latitude = value;
-  }
+  factory FoodServicesWatcardVendor([updates(FoodServicesWatcardVendorBuilder b)]) =
+      _$FoodServicesWatcardVendor;
 }

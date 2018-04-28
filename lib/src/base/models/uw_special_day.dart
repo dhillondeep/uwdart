@@ -1,29 +1,25 @@
-import 'package:dartson/dartson.dart';
-
 /// This Data Model used by [UWLocation] wraps data related to special day for the location
-@Entity()
-class UWSpecialDay {
-  String _date;
-  String _openingHour;
-  String _closingHour;
 
-  String get date => _date;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-  String get openingHour => _openingHour;
+part 'uw_special_day.g.dart';
 
-  String get closingHour => _closingHour;
+abstract class UWSpecialDay extends Object implements Built<UWSpecialDay, UWSpecialDayBuilder> {
+  @nullable
+  String get date;
 
-  @Property(name: "closing_hour")
-  set closingHour(String value) {
-    _closingHour = value;
-  }
+  @BuiltValueField(wireName: "opening_hour")
+  @nullable
+  String get openingHour;
 
-  @Property(name: "opening_hour")
-  set openingHour(String value) {
-    _openingHour = value;
-  }
+  @BuiltValueField(wireName: "closing_hour")
+  @nullable
+  String get closingHour;
 
-  set date(String value) {
-    _date = value;
-  }
+  static Serializer<UWSpecialDay> get serializer => _$uWSpecialDaySerializer;
+
+  factory UWSpecialDay([updates(UWSpecialDayBuilder b)]) = _$UWSpecialDay;
+
+  UWSpecialDay._();
 }

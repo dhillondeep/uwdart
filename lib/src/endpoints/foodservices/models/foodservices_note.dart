@@ -1,36 +1,27 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'foodservices_note.g.dart';
 
 /// This Data Model wraps data related to Food Services note.
-@Entity()
-class FoodServicesNote {
-  String _date;
-  String _outletName;
-  String _outletId;
-  String _note;
+abstract class FoodServicesNote implements Built<FoodServicesNote, FoodServicesNoteBuilder> {
+  @nullable
+  String get date;
 
-  String get date => _date;
+  @BuiltValueField(wireName: "outlet_name")
+  @nullable
+  String get outletName;
 
-  String get outletName => _outletName;
+  @BuiltValueField(wireName: "outlet_id")
+  @nullable
+  int get outletId;
 
-  String get outletId => _outletId;
+  @nullable
+  String get note;
 
-  String get note => _note;
+  FoodServicesNote._();
 
-  set note(String value) {
-    _note = value;
-  }
+  static Serializer<FoodServicesNote> get serializer => _$foodServicesNoteSerializer;
 
-  @Property(name: "outlet_id")
-  set outletId(String value) {
-    _outletId = value;
-  }
-
-  @Property(name: "outlet_name")
-  set outletName(String value) {
-    _outletName = value;
-  }
-
-  set date(String value) {
-    _date = value;
-  }
+  factory FoodServicesNote([updates(FoodServicesNoteBuilder b)]) = _$FoodServicesNote;
 }

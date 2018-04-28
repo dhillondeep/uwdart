@@ -1,21 +1,21 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'api_changelog.g.dart';
 
 /// This Data models wraps data related to change logs for the API. It contains typical date
 /// and a list of changes made.
-@Entity()
-class ApiChangelog {
-  String _date;
-  List<String> _changes;
+abstract class ApiChangelog implements Built<ApiChangelog, ApiChangelogBuilder> {
+  @nullable
+  String get date;
 
-  String get date => _date;
+  @nullable
+  BuiltList<String> get changes;
 
-  List<String> get changes => _changes;
+  ApiChangelog._();
 
-  set changes(List<String> value) {
-    _changes = value;
-  }
+  static Serializer<ApiChangelog> get serializer => _$apiChangelogSerializer;
 
-  set date(String value) {
-    _date = value;
-  }
+  factory ApiChangelog([updates(ApiChangelogBuilder b)]) = _$ApiChangelog;
 }

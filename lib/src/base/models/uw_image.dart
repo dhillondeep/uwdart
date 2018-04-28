@@ -1,60 +1,41 @@
 /// This Data Model wraps a generic structure for the Image that is returned from the API.
 /// This is used under other models who provide detailed information for a query.
-class UWImage {
-  int _id;
-  String _file;
-  String _alt;
-  String _mime;
-  int _size;
-  int _width;
-  int _height;
-  String _url;
 
-  int get id => _id;
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-  String get file => _file;
+part 'uw_image.g.dart';
 
-  String get url => _url;
+/// This is used under other models who provide detailed information for a query.
 
-  int get height => _height;
+abstract class UWImage extends Object implements Built<UWImage, UWImageBuilder> {
+  @nullable
+  int get id;
 
-  int get width => _width;
+  @nullable
+  String get file;
 
-  int get size => _size;
+  @nullable
+  String get alt;
 
-  String get mime => _mime;
+  @nullable
+  String get mime;
 
-  String get alt => _alt;
+  @nullable
+  int get size;
 
-  set url(String value) {
-    _url = value;
-  }
+  @nullable
+  int get width;
 
-  set height(int value) {
-    _height = value;
-  }
+  @nullable
+  int get height;
 
-  set width(int value) {
-    _width = value;
-  }
+  @nullable
+  String get url;
 
-  set size(int value) {
-    _size = value;
-  }
+  static Serializer<UWImage> get serializer => _$uWImageSerializer;
 
-  set mime(String value) {
-    _mime = value;
-  }
+  factory UWImage([updates(UWImageBuilder b)]) = _$UWImage;
 
-  set alt(String value) {
-    _alt = value;
-  }
-
-  set file(String value) {
-    _file = value;
-  }
-
-  set id(int value) {
-    _id = value;
-  }
+  UWImage._();
 }

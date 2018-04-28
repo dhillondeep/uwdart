@@ -1,163 +1,124 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'foodservices_menu.g.dart';
 
 /// This Data Model wraps data related to an Food Services Menu. The data is provides information
 /// about various food menus available.
-@Entity()
-class FoodServicesMenu {
-  FoodServicesDate _date;
-  List<FoodServicesMenuOutlet> _outlets;
+abstract class FoodServicesMenu implements Built<FoodServicesMenu, FoodServicesMenuBuilder> {
+  @nullable
+  FoodServicesDate get date;
 
-  FoodServicesDate get date => _date;
+  @nullable
+  BuiltList<FoodServicesMenuOutlet> get outlets;
 
-  List<FoodServicesMenuOutlet> get outlets => _outlets;
+  FoodServicesMenu._();
 
-  set outlets(List<FoodServicesMenuOutlet> value) {
-    _outlets = value;
-  }
+  static Serializer<FoodServicesMenu> get serializer => _$foodServicesMenuSerializer;
 
-  set date(FoodServicesDate value) {
-    _date = value;
-  }
+  factory FoodServicesMenu([updates(FoodServicesMenuBuilder b)]) = _$FoodServicesMenu;
 }
 
 /// This Data Model is used by [FoodServicesMenu] to wrap data for Menu Outlets.
-@Entity()
-class FoodServicesMenuOutlet {
-  String _outletName;
-  num _outletId;
-  List<FoodServicesOutletMenu> _menu;
+abstract class FoodServicesMenuOutlet
+    implements Built<FoodServicesMenuOutlet, FoodServicesMenuOutletBuilder> {
+  @BuiltValueField(wireName: "outlet_name")
+  @nullable
+  String get outletName;
 
-  String get outletName => _outletName;
+  @BuiltValueField(wireName: "outlet_id")
+  @nullable
+  int get outletId;
 
-  num get outletId => _outletId;
+  @nullable
+  BuiltList<FoodServicesOutletMenu> get menu;
 
-  List<FoodServicesOutletMenu> get menu => _menu;
+  FoodServicesMenuOutlet._();
 
-  set menu(List<FoodServicesOutletMenu> value) {
-    _menu = value;
-  }
+  static Serializer<FoodServicesMenuOutlet> get serializer => _$foodServicesMenuOutletSerializer;
 
-  @Property(name: "outlet_id")
-  set outletId(num value) {
-    _outletId = value;
-  }
-
-  @Property(name: "outlet_name")
-  set outletName(String value) {
-    _outletName = value;
-  }
+  factory FoodServicesMenuOutlet([updates(FoodServicesMenuOutletBuilder b)]) =
+      _$FoodServicesMenuOutlet;
 }
 
 /// This Data Model us used by [FoodServicesOutlet] to wrap data for menu detailed information.
-@Entity()
-class FoodServicesOutletMenu {
-  String _date;
-  String _day;
-  FoodServicesMeal _meals;
-  String _notes;
+abstract class FoodServicesOutletMenu
+    implements Built<FoodServicesOutletMenu, FoodServicesOutletMenuBuilder> {
+  @nullable
+  String get date;
 
-  String get date => _date;
+  @nullable
+  String get day;
 
-  String get day => _day;
+  @nullable
+  FoodServicesMeal get meals;
 
-  FoodServicesMeal get meals => _meals;
+  @nullable
+  String get notes;
 
-  String get notes => _notes;
+  FoodServicesOutletMenu._();
 
-  set notes(String value) {
-    _notes = value;
-  }
+  static Serializer<FoodServicesOutletMenu> get serializer => _$foodServicesOutletMenuSerializer;
 
-  set meals(FoodServicesMeal value) {
-    _meals = value;
-  }
-
-  set day(String value) {
-    _day = value;
-  }
-
-  set date(String value) {
-    _date = value;
-  }
+  factory FoodServicesOutletMenu([updates(FoodServicesOutletMenuBuilder b)]) =
+      _$FoodServicesOutletMenu;
 }
 
 /// This Data Model is used by [FoodServicesOutletMenu] to wrap data about the meal.
-@Entity()
-class FoodServicesMeal {
-  List<FoodServicesMenuItem> _lunch;
-  List<FoodServicesMenuItem> _dinner;
+abstract class FoodServicesMeal implements Built<FoodServicesMeal, FoodServicesMealBuilder> {
+  @nullable
+  BuiltList<FoodServicesMenuItem> get lunch;
 
-  List<FoodServicesMenuItem> get lunch => _lunch;
+  @nullable
+  BuiltList<FoodServicesMenuItem> get dinner;
 
-  List<FoodServicesMenuItem> get dinner => _dinner;
+  FoodServicesMeal._();
 
-  set dinner(List<FoodServicesMenuItem> value) {
-    _dinner = value;
-  }
+  static Serializer<FoodServicesMeal> get serializer => _$foodServicesMealSerializer;
 
-  set lunch(List<FoodServicesMenuItem> value) {
-    _lunch = value;
-  }
+  factory FoodServicesMeal([updates(FoodServicesMealBuilder b)]) = _$FoodServicesMeal;
 }
 
 /// This Data Model is used by [FoodServicesMeal] to wrap data about meal item.
-@Entity()
-class FoodServicesMenuItem {
-  String _productName;
-  String _dietType;
-  num _productId;
+abstract class FoodServicesMenuItem
+    implements Built<FoodServicesMenuItem, FoodServicesMenuItemBuilder> {
+  @BuiltValueField(wireName: "product_name")
+  @nullable
+  String get productName;
 
-  String get productName => _productName;
+  @BuiltValueField(wireName: "diet_type")
+  @nullable
+  String get dietType;
 
-  String get dietType => _dietType;
+  @BuiltValueField(wireName: "product_id")
+  @nullable
+  int get productId;
 
-  num get productId => _productId;
+  FoodServicesMenuItem._();
 
-  @Property(name: "product_id")
-  set productId(num value) {
-    _productId = value;
-  }
+  static Serializer<FoodServicesMenuItem> get serializer => _$foodServicesMenuItemSerializer;
 
-  @Property(name: "diet_type")
-  set dietType(String value) {
-    _dietType = value;
-  }
-
-  @Property(name: "product_name")
-  set productName(String value) {
-    _productName = value;
-  }
+  factory FoodServicesMenuItem([updates(FoodServicesMenuItemBuilder b)]) = _$FoodServicesMenuItem;
 }
 
 /// This Data Model is used by [FoodServicesMenu] to store menu date.
-@Entity()
-class FoodServicesDate {
-  int _week;
-  int _year;
-  String _start;
-  String _end;
+abstract class FoodServicesDate implements Built<FoodServicesDate, FoodServicesDateBuilder> {
+  @nullable
+  int get week;
 
-  int get week => _week;
+  @nullable
+  int get year;
 
-  int get year => _year;
+  @nullable
+  String get start;
 
-  String get start => _start;
+  @nullable
+  String get end;
 
-  String get end => _end;
+  FoodServicesDate._();
 
-  set end(String value) {
-    _end = value;
-  }
+  static Serializer<FoodServicesDate> get serializer => _$foodServicesDateSerializer;
 
-  set start(String value) {
-    _start = value;
-  }
-
-  set year(int value) {
-    _year = value;
-  }
-
-  set week(int value) {
-    _week = value;
-  }
+  factory FoodServicesDate([updates(FoodServicesDateBuilder b)]) = _$FoodServicesDate;
 }

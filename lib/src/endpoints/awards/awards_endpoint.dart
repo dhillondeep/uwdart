@@ -12,14 +12,12 @@ class AwardsEndpoint extends UWEndpoint {
   AwardsEndpoint(Client client) : super(client);
 
   /// Get's a list of all the Graduate Awards at UW
-  Future<List<Award>> getGraduateAwards() {
-    return CreateRequest(client, [AWARDS_GRADUATE])
-        .then((data) => new ResponseParser<Award>().parse(data));
+  Future<List<Award>> getGraduateAwards() async {
+    return new Fetcher(Award.serializer, client).fetch([AWARDS_GRADUATE]);
   }
 
   /// Get's a list of all the Undergraduate Awards at UW
-  Future<List<Award>> getUndergraduateAwards() {
-    return CreateRequest(client, [AWARDS_UNDERGRADUATE])
-        .then((data) => new ResponseParser<Award>().parse(data));
+  Future<List<Award>> getUndergraduateAwards() async {
+    return new Fetcher(Award.serializer, client).fetch([AWARDS_UNDERGRADUATE]);
   }
 }

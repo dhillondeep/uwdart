@@ -1,38 +1,29 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'api_usage.g.dart';
 
 /// This Data Model wraps data related to API usage by the user of the key. It contains
 /// information about the name, key, monthly calls, and total calls.
-@Entity()
-class ApiUsage {
-  String _name;
-  String _apiKey;
-  int _monthlyCalls;
-  int _totalCalls;
+abstract class ApiUsage implements Built<ApiUsage, ApiUsageBuilder> {
+  @nullable
+  String get name;
 
-  String get name => _name;
+  @BuiltValueField(wireName: "api_key")
+  @nullable
+  String get apiKey;
 
-  String get apiKey => _apiKey;
+  @BuiltValueField(wireName: "monthly_calls")
+  @nullable
+  int get monthlyCalls;
 
-  int get totalCalls => _totalCalls;
+  @BuiltValueField(wireName: "total_calls")
+  @nullable
+  int get totalCalls;
 
-  int get monthlyCalls => _monthlyCalls;
+  ApiUsage._();
 
-  set name(String value) {
-    _name = value;
-  }
+  static Serializer<ApiUsage> get serializer => _$apiUsageSerializer;
 
-  @Property(name: "total_calls")
-  set totalCalls(int value) {
-    _totalCalls = value;
-  }
-
-  @Property(name: "monthly_calls")
-  set monthlyCalls(int value) {
-    _monthlyCalls = value;
-  }
-
-  @Property(name: "api_key")
-  set apiKey(String value) {
-    _apiKey = value;
-  }
+  factory ApiUsage([updates(ApiUsageBuilder b)]) = _$ApiUsage;
 }

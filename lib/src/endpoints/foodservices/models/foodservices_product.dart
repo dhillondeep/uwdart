@@ -1,244 +1,131 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'foodservices_product.g.dart';
 
 /// This Data Model wraps data related to Food Product from Food Services.
-@Entity()
-class FoodServicesProduct {
-  num _productId;
-  String _productName;
-  String _ingredients;
-  String _servingSize;
-  num _servingSizeMl;
-  num _servingSizeG;
-  num _calories;
-  num _totalFatG;
-  num _totalFatPercent;
-  num _fatSaturatedG;
-  num _fatSaturatedPercent;
-  num _fatTransG;
-  num _fatTransPercent;
-  num _cholesterolMg;
-  num _sodiumMg;
-  num _sodiumPercent;
-  num _carboG;
-  num _carboPercent;
-  num _carboFibreG;
-  num _carboFibrePercent;
-  num _carboSugarsG;
-  num _proteinG;
-  num _vitaminAPercent;
-  num _vitaminCPercent;
-  num _calciumPercent;
-  num _ironPercent;
-  String _microNutrients;
-  String _tips;
-  num _dietId;
-  String _dietType;
+abstract class FoodServicesProduct
+    implements Built<FoodServicesProduct, FoodServicesProductBuilder> {
+  @BuiltValueField(wireName: "product_id")
+  @nullable
+  int get productId;
 
-  num get productId => _productId;
+  @BuiltValueField(wireName: "product_name")
+  @nullable
+  String get productName;
 
-  String get productName => _productName;
+  @nullable
+  String get ingredients;
 
-  String get dietType => _dietType;
+  @BuiltValueField(wireName: "serving_size")
+  @nullable
+  String get servingSize;
 
-  num get dietId => _dietId;
+  @BuiltValueField(wireName: "serving_size_ml")
+  @nullable
+  int get servingSizeMl;
 
-  String get tips => _tips;
+  @BuiltValueField(wireName: "serving_size_g")
+  @nullable
+  int get servingSizeG;
 
-  String get microNutrients => _microNutrients;
+  @nullable
+  int get calories;
 
-  num get ironPercent => _ironPercent;
+  @BuiltValueField(wireName: "total_fat_g")
+  @nullable
+  int get totalFatG;
 
-  num get calciumPercent => _calciumPercent;
+  @BuiltValueField(wireName: "total_fat_percentage")
+  @nullable
+  int get totalFatPercent;
 
-  num get vitaminCPercent => _vitaminCPercent;
+  @BuiltValueField(wireName: "fat_saturated_g")
+  @nullable
+  int get fatSaturatedG;
 
-  num get vitaminAPercent => _vitaminAPercent;
+  @BuiltValueField(wireName: "fat_saturated_percent")
+  @nullable
+  int get fatSaturatedPercent;
 
-  num get proteinG => _proteinG;
+  @BuiltValueField(wireName: "fat_trans_g")
+  @nullable
+  int get fatTransG;
 
-  num get carboSugarsG => _carboSugarsG;
+  @BuiltValueField(wireName: "fat_trans_percent")
+  @nullable
+  int get fatTransPercent;
 
-  num get carboFibrePercent => _carboFibrePercent;
+  @BuiltValueField(wireName: "cholestero_mg")
+  @nullable
+  int get cholesterolMg;
 
-  num get carboFibreG => _carboFibreG;
+  @BuiltValueField(wireName: "sodium_mg")
+  @nullable
+  int get sodiumMg;
 
-  num get carboPercent => _carboPercent;
+  @BuiltValueField(wireName: "sodium_percent")
+  @nullable
+  int get sodiumPercent;
 
-  num get carboG => _carboG;
+  @BuiltValueField(wireName: "carbo_g")
+  @nullable
+  int get carboG;
 
-  num get sodiumPercent => _sodiumPercent;
+  @BuiltValueField(wireName: "carbo_percent")
+  @nullable
+  int get carboPercent;
 
-  num get sodiumMg => _sodiumMg;
+  @BuiltValueField(wireName: "carbo_fibre_g")
+  @nullable
+  int get carboFibreG;
 
-  num get cholesterolMg => _cholesterolMg;
+  @BuiltValueField(wireName: "carbo_fibre_percent")
+  @nullable
+  int get carboFibrePercent;
 
-  num get fatTransPercent => _fatTransPercent;
+  @BuiltValueField(wireName: "carbo_sugars_g")
+  @nullable
+  int get carboSugarsG;
 
-  num get fatTransG => _fatTransG;
+  @BuiltValueField(wireName: "protein_g")
+  @nullable
+  int get proteinG;
 
-  num get fatSaturatedPercent => _fatSaturatedPercent;
+  @BuiltValueField(wireName: "vitamin_a_percent")
+  @nullable
+  int get vitaminAPercent;
 
-  num get fatSaturatedG => _fatSaturatedG;
+  @BuiltValueField(wireName: "vitamin_c_percent")
+  @nullable
+  int get vitaminCPercent;
 
-  num get totalFatPercent => _totalFatPercent;
+  @BuiltValueField(wireName: "calcium_percent")
+  @nullable
+  int get calciumPercent;
 
-  num get totalFatG => _totalFatG;
+  @BuiltValueField(wireName: "iron_percent")
+  @nullable
+  int get ironPercent;
 
-  num get calories => _calories;
+  @BuiltValueField(wireName: "micro_nutrients")
+  @nullable
+  String get microNutrients;
 
-  num get servingSizeG => _servingSizeG;
+  @nullable
+  String get tips;
 
-  num get servingSizeMl => _servingSizeMl;
+  @BuiltValueField(wireName: "diet_id")
+  @nullable
+  int get dietId;
 
-  String get servingSize => _servingSize;
+  @BuiltValueField(wireName: "diet_type")
+  @nullable
+  String get dietType;
 
-  String get ingredients => _ingredients;
+  FoodServicesProduct._();
 
-  @Property(name: "diet_type")
-  set dietType(String value) {
-    _dietType = value;
-  }
+  static Serializer<FoodServicesProduct> get serializer => _$foodServicesProductSerializer;
 
-  @Property(name: "diet_id")
-  set dietId(num value) {
-    _dietId = value;
-  }
-
-  set tips(String value) {
-    _tips = value;
-  }
-
-  @Property(name: "micro_nutrients")
-  set microNutrients(String value) {
-    _microNutrients = value;
-  }
-
-  @Property(name: "iron_percent")
-  set ironPercent(num value) {
-    _ironPercent = value;
-  }
-
-  @Property(name: "calcium_percent")
-  set calciumPercent(num value) {
-    _calciumPercent = value;
-  }
-
-  @Property(name: "vitamin_c_percent")
-  set vitaminCPercent(num value) {
-    _vitaminCPercent = value;
-  }
-
-  @Property(name: "vitamin_a_percent")
-  set vitaminAPercent(num value) {
-    _vitaminAPercent = value;
-  }
-
-  @Property(name: "protein_g_percent")
-  set proteinG(num value) {
-    _proteinG = value;
-  }
-
-  @Property(name: "carbo_sugars_g")
-  set carboSugarsG(num value) {
-    _carboSugarsG = value;
-  }
-
-  @Property(name: "carbo_fibre_percent")
-  set carboFibrePercent(num value) {
-    _carboFibrePercent = value;
-  }
-
-  @Property(name: "carbo_fibre_g")
-  set carboFibreG(num value) {
-    _carboFibreG = value;
-  }
-
-  @Property(name: "carbo_percent")
-  set carboPercent(num value) {
-    _carboPercent = value;
-  }
-
-  @Property(name: "carbo_g")
-  set carboG(num value) {
-    _carboG = value;
-  }
-
-  @Property(name: "sodium_percent")
-  set sodiumPercent(num value) {
-    _sodiumPercent = value;
-  }
-
-  @Property(name: "sodium_mg")
-  set sodiumMg(num value) {
-    _sodiumMg = value;
-  }
-
-  @Property(name: "cholesterol_mg")
-  set cholesterolMg(num value) {
-    _cholesterolMg = value;
-  }
-
-  @Property(name: "fat_trans_percent")
-  set fatTransPercent(num value) {
-    _fatTransPercent = value;
-  }
-
-  @Property(name: "fat_trans_g")
-  set fatTransG(num value) {
-    _fatTransG = value;
-  }
-
-  @Property(name: "fat_saturated_percent")
-  set fatSaturatedPercent(num value) {
-    _fatSaturatedPercent = value;
-  }
-
-  @Property(name: "fat_saturated_g")
-  set fatSaturatedG(num value) {
-    _fatSaturatedG = value;
-  }
-
-  @Property(name: "total_fat_percent")
-  set totalFatPercent(num value) {
-    _totalFatPercent = value;
-  }
-
-  @Property(name: "total_fat_g")
-  set totalFatG(num value) {
-    _totalFatG = value;
-  }
-
-  set calories(num value) {
-    _calories = value;
-  }
-
-  @Property(name: "serving_size_g")
-  set servingSizeG(num value) {
-    _servingSizeG = value;
-  }
-
-  @Property(name: "serving_size_ml")
-  set servingSizeMl(num value) {
-    _servingSizeMl = value;
-  }
-
-  @Property(name: "serving_size")
-  set servingSize(String value) {
-    _servingSize = value;
-  }
-
-  @Property(name: "ingredients")
-  set ingredients(String value) {
-    _ingredients = value;
-  }
-
-  @Property(name: "product_name")
-  set productName(String value) {
-    _productName = value;
-  }
-
-  @Property(name: "product_id")
-  set productId(num value) {
-    _productId = value;
-  }
+  factory FoodServicesProduct([updates(FoodServicesProductBuilder b)]) = _$FoodServicesProduct;
 }

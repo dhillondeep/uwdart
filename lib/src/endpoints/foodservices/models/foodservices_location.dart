@@ -1,75 +1,36 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/base/models/uw_location.dart';
 import 'package:uwdart/src/base/models/uw_open_hours.dart';
 import 'package:uwdart/src/base/models/uw_special_day.dart';
+part 'foodservices_location.g.dart';
 
 /// This Data Model wraps the data related to Food Services Location.
-@Entity()
-class FoodServicesLocation implements UWLocation {
-  @override
-  String building;
+abstract class FoodServicesLocation
+    implements UWLocation, Built<FoodServicesLocation, FoodServicesLocationBuilder> {
+  @nullable
+  FoodServicesLocationAdditional get additional;
 
-  @override
-  @Property(name: "dates_closed")
-  List<String> datesClosed;
+  FoodServicesLocation._();
 
-  @override
-  String description;
+  static Serializer<FoodServicesLocation> get serializer => _$foodServicesLocationSerializer;
 
-  @override
-  @Property(name: "is_24hrs")
-  bool is24Hrs;
-
-  @override
-  @Property(name: "is_open_now")
-  bool isOpenNow;
-
-  @override
-  num latitude;
-
-  @override
-  String logo;
-
-  @override
-  num longitude;
-
-  @override
-  String notice;
-
-  @override
-  @Property(name: "opening_hours")
-  UWOpeningHours openingHours;
-
-  @override
-  @Property(name: "outlet_id")
-  num outletId;
-
-  @override
-  @Property(name: "outlet_name")
-  String outletName;
-
-  @override
-  @Property(name: "special_hours")
-  List<UWSpecialDay> specialHours;
-
-  FoodServicesLocationAdditional _additional;
-
-  FoodServicesLocationAdditional get additional => _additional;
-
-  set additional(FoodServicesLocationAdditional value) {
-    _additional = value;
-  }
+  factory FoodServicesLocation([updates(FoodServicesLocationBuilder b)]) = _$FoodServicesLocation;
 }
 
 /// This Data Model used by [FoodServicesLocation] wraps additional data provided by the location.
-@Entity()
-class FoodServicesLocationAdditional {
-  String _menuUrl;
+abstract class FoodServicesLocationAdditional
+    implements Built<FoodServicesLocationAdditional, FoodServicesLocationAdditionalBuilder> {
+  @BuiltValueField(wireName: "menu_url")
+  @nullable
+  String get menuUrl;
 
-  String get menuUrl => _menuUrl;
+  FoodServicesLocationAdditional._();
 
-  @Property(name: "menu_url")
-  set menuUrl(String value) {
-    _menuUrl = value;
-  }
+  static Serializer<FoodServicesLocationAdditional> get serializer =>
+      _$foodServicesLocationAdditionalSerializer;
+
+  factory FoodServicesLocationAdditional([updates(FoodServicesLocationAdditionalBuilder b)]) =
+      _$FoodServicesLocationAdditional;
 }

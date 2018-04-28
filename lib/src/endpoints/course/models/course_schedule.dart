@@ -1,317 +1,188 @@
-import 'package:dartson/dartson.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'course_schedule.g.dart';
 
 /// This Data Model wraps data related to a schedule for a course/class. It contains enrollment
 /// information and reasonable amount of course information.
-@Entity()
-class CourseSchedule {
-  String _subject;
-  String _catalogNumber;
-  num _units;
-  String _title;
-  String _note;
-  int _classNumber;
-  String _section;
-  String _campus;
-  int _associatedClass;
-  String _relatedComponent1;
-  String _relatedComponent2;
-  int _enrollmentCapacity;
-  int _enrollmentTotal;
-  int _waitingCapacity;
-  int _waitingTotal;
-  String _total;
-  List<CourseReserves> _reserves;
-  List<ClassData> _classes;
-  List<String> _heldWith;
-  int _term;
-  String _academicLevel;
-  String _lastUpdated;
+abstract class CourseSchedule implements Built<CourseSchedule, CourseScheduleBuilder> {
+  @nullable
+  String get subject;
 
-  String get subject => _subject;
+  @BuiltValueField(wireName: "catalog_number")
+  @nullable
+  String get catalogNumber;
 
-  String get catalogNumber => _catalogNumber;
+  @nullable
+  num get units;
 
-  num get units => _units;
+  @nullable
+  String get title;
 
-  String get title => _title;
+  @nullable
+  String get note;
 
-  String get note => _note;
+  @BuiltValueField(wireName: "class_number")
+  @nullable
+  int get classNumber;
 
-  int get classNumber => _classNumber;
+  @nullable
+  String get section;
 
-  String get section => _section;
+  @nullable
+  String get campus;
 
-  String get campus => _campus;
+  @BuiltValueField(wireName: "associated_class")
+  @nullable
+  int get associatedClass;
 
-  int get associatedClass => _associatedClass;
+  @BuiltValueField(wireName: "releated_component_1")
+  @nullable
+  String get relatedComponent1;
 
-  String get relatedComponent1 => _relatedComponent1;
+  @BuiltValueField(wireName: "releated_component_2")
+  @nullable
+  String get relatedComponent2;
 
-  String get relatedComponent2 => _relatedComponent2;
+  @BuiltValueField(wireName: "enrollment_capacity")
+  @nullable
+  int get enrollmentCapacity;
 
-  int get enrollmentCapacity => _enrollmentCapacity;
+  @BuiltValueField(wireName: "enrollment_total")
+  @nullable
+  int get enrollmentTotal;
 
-  String get lastUpdated => _lastUpdated;
+  @BuiltValueField(wireName: "waiting_capacity")
+  @nullable
+  int get waitingCapacity;
 
-  String get academicLevel => _academicLevel;
+  @BuiltValueField(wireName: "waiting_total")
+  @nullable
+  num get waitingTotal;
 
-  int get term => _term;
+  @nullable
+  String get total;
 
-  List<String> get heldWith => _heldWith;
+  @nullable
+  BuiltList<CourseReserves> get reserves;
 
-  List<ClassData> get classes => _classes;
+  @nullable
+  BuiltList<ClassData> get classes;
 
-  List<CourseReserves> get reserves => _reserves;
+  @BuiltValueField(wireName: "held_with")
+  @nullable
+  BuiltList<String> get heldWith;
 
-  String get total => _total;
+  @nullable
+  int get term;
 
-  int get waitingTotal => _waitingTotal;
+  @BuiltValueField(wireName: "academic_level")
+  @nullable
+  String get academicLevel;
 
-  int get waitingCapacity => _waitingCapacity;
+  @BuiltValueField(wireName: "last_updated")
+  @nullable
+  String get lastUpdated;
 
-  int get enrollmentTotal => _enrollmentTotal;
+  CourseSchedule._();
 
-  @Property(name: "last_updated")
-  set lastUpdated(String value) {
-    _lastUpdated = value;
-  }
+  static Serializer<CourseSchedule> get serializer => _$courseScheduleSerializer;
 
-  @Property(name: "academic_level")
-  set academicLevel(String value) {
-    _academicLevel = value;
-  }
-
-  set term(int value) {
-    _term = value;
-  }
-
-  @Property(name: "held_with")
-  set heldWith(List<String> value) {
-    _heldWith = value;
-  }
-
-  set classes(List<ClassData> value) {
-    _classes = value;
-  }
-
-  set reserves(List<CourseReserves> value) {
-    _reserves = value;
-  }
-
-  set total(String value) {
-    _total = value;
-  }
-
-  @Property(name: "waiting_total")
-  set waitingTotal(int value) {
-    _waitingTotal = value;
-  }
-
-  @Property(name: "waiting_capacity")
-  set waitingCapacity(int value) {
-    _waitingCapacity = value;
-  }
-
-  @Property(name: "enrollment_total")
-  set enrollmentTotal(int value) {
-    _enrollmentTotal = value;
-  }
-
-  @Property(name: "enrollment_capacity")
-  set enrollmentCapacity(int value) {
-    _enrollmentCapacity = value;
-  }
-
-  @Property(name: "releated_component_2")
-  set relatedComponent2(String value) {
-    _relatedComponent2 = value;
-  }
-
-  @Property(name: "related_component_1")
-  set relatedComponent1(String value) {
-    _relatedComponent1 = value;
-  }
-
-  @Property(name: "associated_class")
-  set associatedClass(int value) {
-    _associatedClass = value;
-  }
-
-  @Property(name: "campus")
-  set campus(String value) {
-    _campus = value;
-  }
-
-  set section(String value) {
-    _section = value;
-  }
-
-  @Property(name: "class_number")
-  set classNumber(int value) {
-    _classNumber = value;
-  }
-
-  set note(String value) {
-    _note = value;
-  }
-
-  set title(String value) {
-    _title = value;
-  }
-
-  set units(num value) {
-    _units = value;
-  }
-
-  @Property(name: "catalog_number")
-  set catalogNumber(String value) {
-    _catalogNumber = value;
-  }
-
-  set subject(String value) {
-    _subject = value;
-  }
+  factory CourseSchedule([updates(CourseScheduleBuilder b)]) = _$CourseSchedule;
 }
 
 /// This Data Model is used by [CourseSchedule] to wrap data for the reserve groups.
-@Entity()
-class CourseReserves {
-  String _reserveGroup;
-  int _enrollmentCapacity;
-  int _enrollmentTotal;
+abstract class CourseReserves implements Built<CourseReserves, CourseReservesBuilder> {
+  @BuiltValueField(wireName: "reserve_group")
+  @nullable
+  String get reserveGroup;
 
-  String get reserveGroup => _reserveGroup;
+  @BuiltValueField(wireName: "enrollment_capacity")
+  @nullable
+  int get enrollmentCapacity;
 
-  int get enrollmentCapacity => _enrollmentCapacity;
+  @BuiltValueField(wireName: "enrollment_total")
+  @nullable
+  int get enrollmentTotal;
 
-  int get enrollmentTotal => _enrollmentTotal;
+  CourseReserves._();
 
-  @Property(name: "enrollment_total")
-  set enrollmentTotal(int value) {
-    _enrollmentTotal = value;
-  }
+  static Serializer<CourseReserves> get serializer => _$courseReservesSerializer;
 
-  @Property(name: "enrollment_capacity")
-  set enrollmentCapacity(int value) {
-    _enrollmentCapacity = value;
-  }
-
-  @Property(name: "reserve_group")
-  set reserveGroup(String value) {
-    _reserveGroup = value;
-  }
+  factory CourseReserves([updates(CourseReservesBuilder b)]) = _$CourseReserves;
 }
 
 /// This Data Model is used by [CourseSchedule] to wrap data for class information such as: it's dates,
 /// location and instructors.
-@Entity()
-class ClassData {
-  CourseDates _date;
-  CourseLocation _location;
-  List<String> _instructors;
+abstract class ClassData implements Built<ClassData, ClassDataBuilder> {
+  @nullable
+  CourseDates get date;
 
-  CourseDates get date => _date;
+  @nullable
+  CourseLocation get location;
 
-  CourseLocation get location => _location;
+  @nullable
+  BuiltList<String> get instructors;
 
-  List<String> get instructors => _instructors;
+  ClassData._();
 
-  set instructors(List<String> value) {
-    _instructors = value;
-  }
+  static Serializer<ClassData> get serializer => _$classDataSerializer;
 
-  set location(CourseLocation value) {
-    _location = value;
-  }
-
-  set date(CourseDates value) {
-    _date = value;
-  }
+  factory ClassData([updates(ClassDataBuilder b)]) = _$ClassData;
 }
 
 /// This Data Model is used by [ClassData] to wrap data about class's location.
-@Entity()
-class CourseLocation {
-  String _building;
-  String _room;
+abstract class CourseLocation implements Built<CourseLocation, CourseLocationBuilder> {
+  @nullable
+  String get building;
 
-  String get building => _building;
+  @nullable
+  String get room;
 
-  String get room => _room;
+  CourseLocation._();
 
-  set room(String value) {
-    _room = value;
-  }
+  static Serializer<CourseLocation> get serializer => _$courseLocationSerializer;
 
-  set building(String value) {
-    _building = value;
-  }
+  factory CourseLocation([updates(CourseLocationBuilder b)]) = _$CourseLocation;
 }
 
 /// This Data Model is used by [ClassData] to wrap data about class's dates.
-@Entity()
-class CourseDates {
-  String _startTime;
-  String _endTime;
-  String _weekdays;
-  String _startDate;
-  String _endDate;
-  bool _isTba;
-  bool _isCancelled;
-  bool _isClosed;
+abstract class CourseDates implements Built<CourseDates, CourseDatesBuilder> {
+  @BuiltValueField(wireName: "start_time")
+  @nullable
+  String get startTime;
 
-  String get startTime => _startTime;
+  @BuiltValueField(wireName: "end_time")
+  @nullable
+  String get endTime;
 
-  String get endTime => _endTime;
+  @nullable
+  String get weekdays;
 
-  String get weekdays => _weekdays;
+  @BuiltValueField(wireName: "start_date")
+  @nullable
+  String get startDate;
 
-  String get startDate => _startDate;
+  @BuiltValueField(wireName: "end_date")
+  @nullable
+  String get endDate;
 
-  String get endDate => _endDate;
+  @BuiltValueField(wireName: "is_tba")
+  @nullable
+  bool get isTba;
 
-  bool get isTba => _isTba;
+  @BuiltValueField(wireName: "is_cancelled")
+  @nullable
+  bool get isCancelled;
 
-  bool get isCancelled => _isCancelled;
+  @BuiltValueField(wireName: "is_closed")
+  @nullable
+  bool get isClosed;
 
-  bool get isClosed => _isClosed;
+  CourseDates._();
 
-  @Property(name: "is_closed")
-  set isClosed(bool value) {
-    _isClosed = value;
-  }
+  static Serializer<CourseDates> get serializer => _$courseDatesSerializer;
 
-  @Property(name: "is_cancelled")
-  set isCancelled(bool value) {
-    _isCancelled = value;
-  }
-
-  @Property(name: "is_tba")
-  set isTba(bool value) {
-    _isTba = value;
-  }
-
-  @Property(name: "end_date")
-  set endDate(String value) {
-    _endDate = value;
-  }
-
-  @Property(name: "start_date")
-  set startDate(String value) {
-    _startDate = value;
-  }
-
-  set weekdays(String value) {
-    _weekdays = value;
-  }
-
-  @Property(name: "end_time")
-  set endTime(String value) {
-    _endTime = value;
-  }
-
-  @Property(name: "start_time")
-  set startTime(String value) {
-    _startTime = value;
-  }
+  factory CourseDates([updates(CourseDatesBuilder b)]) = _$CourseDates;
 }
