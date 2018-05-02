@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/base/models/uw_day.dart';
 import 'package:uwdart/src/base/models/uw_image.dart';
@@ -21,6 +22,14 @@ import 'package:uwdart/src/endpoints/course/models/course_subject.dart';
 import 'package:uwdart/src/endpoints/feds/models/feds_event.dart';
 import 'package:uwdart/src/endpoints/feds/models/feds_events_detailed.dart';
 import 'package:uwdart/src/endpoints/feds/models/feds_location.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_annoucement.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_diet.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_location.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_menu.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_note.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_outlet.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_product.dart';
+import 'package:uwdart/src/endpoints/foodservices/models/foodservices_watcard_vendor.dart';
 import 'package:uwdart/src/endpoints/news/model/news.dart';
 import 'package:uwdart/src/endpoints/news/model/news_detailed.dart';
 import 'package:uwdart/src/endpoints/news/model/news_site.dart';
@@ -59,6 +68,19 @@ part 'serializers.g.dart';
   // News
   News,
   NewsDetailed,
-  NewsSite
+  NewsSite,
+  // Food
+  FoodServicesAnnouncement,
+  FoodServicesDiet,
+  FoodServicesLocation,
+  FoodServicesMenu,
+  FoodServicesNote,
+  FoodServicesOutlet,
+  FoodServicesProduct,
+  FoodServicesWatcardVendor
 ])
-final Serializers serializers = _$serializers;
+final Serializers serializers = (_$serializers.toBuilder()
+      ..addBuilderFactory(
+          const FullType(BuiltMap, const [const FullType(String), const FullType(JsonObject)]),
+          () => new MapBuilder<String, JsonObject>()))
+    .build();

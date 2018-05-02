@@ -1,5 +1,6 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+
 part 'foodservices_outlet.g.dart';
 
 /// This Data Model wraps data related to outlets available from Food Services.

@@ -8,6 +8,8 @@ part 'uw_image.g.dart';
 
 /// This is used under other models who provide detailed information for a query.
 
+/// This is used under other models who provide detailed information for a query.
+
 abstract class UWImage extends Object implements Built<UWImage, UWImageBuilder> {
   @nullable
   int get id;

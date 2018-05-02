@@ -41,7 +41,22 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FedsEventDetailed.serializer)
       ..add(FedsLocation.serializer)
       ..add(FedsLocationAdditional.serializer)
+      ..add(FoodServicesAnnouncement.serializer)
+      ..add(FoodServicesDate.serializer)
+      ..add(FoodServicesDiet.serializer)
+      ..add(FoodServicesLocation.serializer)
+      ..add(FoodServicesLocationAdditional.serializer)
+      ..add(FoodServicesMeal.serializer)
+      ..add(FoodServicesMenu.serializer)
+      ..add(FoodServicesMenuItem.serializer)
+      ..add(FoodServicesMenuOutlet.serializer)
+      ..add(FoodServicesNote.serializer)
+      ..add(FoodServicesOutlet.serializer)
+      ..add(FoodServicesOutletMenu.serializer)
+      ..add(FoodServicesProduct.serializer)
+      ..add(FoodServicesWatcardVendor.serializer)
       ..add(Meta.serializer)
+      ..add(MetaMethod.serializer)
       ..add(News.serializer)
       ..add(NewsDetailed.serializer)
       ..add(NewsSite.serializer)
@@ -59,6 +74,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<ClassData>())
       ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(FoodServicesMenuItem)]),
+          () => new ListBuilder<FoodServicesMenuItem>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(FoodServicesMenuItem)]),
+          () => new ListBuilder<FoodServicesMenuItem>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(FoodServicesMenuOutlet)]),
+          () => new ListBuilder<FoodServicesMenuOutlet>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(FoodServicesOutletMenu)]),
+          () => new ListBuilder<FoodServicesOutletMenu>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(JsonObject)]),
+          () => new ListBuilder<JsonObject>())
       ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]),
@@ -103,9 +128,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<UWSpecialDay>())
       ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(List, const [
-            const FullType(Map, const [const FullType(String), const FullType(Object)])
-          ]),
-          () => new ListBuilder<Map<String, Object>>()))
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(UWSpecialDay)]),
+          () => new ListBuilder<UWSpecialDay>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>()))
     .build();

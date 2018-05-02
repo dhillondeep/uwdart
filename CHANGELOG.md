@@ -4,8 +4,14 @@
 
 ### Modified
 - Switched to Dart 2
-- Switched from dartson (reflection) to built_values for JSON serialization
-- Changed News GetAllNews() method to GetNews()
+- Switched from `dartson (reflection)` to `built_values` for JSON serialization
+- Changed News `GetAllNews()` method to `getNews()`
+- Changed Course `getCoursePrerequisiteBySubjectCatalog` to `getCoursePrerequisite`
+- Every endpoint returns a `DataResponse` now and this DataResponse contains `meta` from the http request and `deserialized data`
+- `APIResponse` is now fully `serializable`.
+- Deleted APIResponse `rawString` field from APIResponse because there is a toString method for the `data` field
+- `makeRawRequest()` now accepts a `String` for `arguments` and a `map` for the `parameters`
+- Made every endpoint call an explicit async
 
 ## 0.0.5
 ### Added

@@ -11,17 +11,31 @@ abstract class Meta implements Built<Meta, MetaBuilder> {
 
   int get status;
 
-  @nullable
-  int get version;
+  String get message;
 
+  @BuiltValueField(wireName: "method_id")
   @nullable
   int get methodId;
 
-  String get message;
+  MetaMethod get method;
 
-  Meta._();
+  static Serializer<Meta> get serializer => _$metaSerializer;
 
   factory Meta([updates(MetaBuilder b)]) = _$Meta;
 
-  static Serializer<Meta> get serializer => _$metaSerializer;
+  Meta._();
+}
+
+abstract class MetaMethod implements Built<MetaMethod, MetaMethodBuilder> {
+  @nullable
+  String get disclaimer;
+
+  @nullable
+  String get license;
+
+  static Serializer<MetaMethod> get serializer => _$metaMethodSerializer;
+
+  factory MetaMethod([updates(MetaMethodBuilder b)]) = _$MetaMethod;
+
+  MetaMethod._();
 }

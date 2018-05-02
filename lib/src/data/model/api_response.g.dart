@@ -25,19 +25,16 @@ class _$APIResponseSerializer implements StructuredSerializer<APIResponse> {
   @override
   Iterable serialize(Serializers serializers, APIResponse object,
       {FullType specifiedType: FullType.unspecified}) {
-    final result = <Object>[
-      'data',
-      serializers.serialize(object.data,
-          specifiedType: const FullType(List, const [
-            const FullType(Map, const [const FullType(String), const FullType(Object)])
-          ])),
-      'raw',
-      serializers.serialize(object.raw, specifiedType: const FullType(String)),
-    ];
+    final result = <Object>[];
     if (object.meta != null) {
       result
         ..add('meta')
         ..add(serializers.serialize(object.meta, specifiedType: const FullType(Meta)));
+    }
+    if (object.data != null) {
+      result
+        ..add('data')
+        ..add(serializers.serialize(object.data, specifiedType: const FullType(JsonObject)));
     }
 
     return result;
@@ -59,14 +56,8 @@ class _$APIResponseSerializer implements StructuredSerializer<APIResponse> {
               .replace(serializers.deserialize(value, specifiedType: const FullType(Meta)) as Meta);
           break;
         case 'data':
-          result.data = serializers.deserialize(value,
-              specifiedType: const FullType(List, const [
-                const FullType(Map, const [const FullType(String), const FullType(Object)])
-              ])) as List<Map<String, Object>>;
-          break;
-        case 'raw':
-          result.raw =
-              serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.data = serializers.deserialize(value, specifiedType: const FullType(JsonObject))
+              as JsonObject;
           break;
       }
     }
@@ -79,17 +70,12 @@ class _$APIResponse extends APIResponse {
   @override
   final Meta meta;
   @override
-  final List<Map<String, Object>> data;
-  @override
-  final String raw;
+  final JsonObject data;
 
   factory _$APIResponse([void updates(APIResponseBuilder b)]) =>
       (new APIResponseBuilder()..update(updates)).build();
 
-  _$APIResponse._({this.meta, this.data, this.raw}) : super._() {
-    if (data == null) throw new BuiltValueNullFieldError('APIResponse', 'data');
-    if (raw == null) throw new BuiltValueNullFieldError('APIResponse', 'raw');
-  }
+  _$APIResponse._({this.meta, this.data}) : super._();
 
   @override
   APIResponse rebuild(void updates(APIResponseBuilder b)) => (toBuilder()..update(updates)).build();
@@ -101,20 +87,17 @@ class _$APIResponse extends APIResponse {
   bool operator ==(dynamic other) {
     if (identical(other, this)) return true;
     if (other is! APIResponse) return false;
-    return meta == other.meta && data == other.data && raw == other.raw;
+    return meta == other.meta && data == other.data;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, meta.hashCode), data.hashCode), raw.hashCode));
+    return $jf($jc($jc(0, meta.hashCode), data.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('APIResponse')
-          ..add('meta', meta)
-          ..add('data', data)
-          ..add('raw', raw))
+    return (newBuiltValueToStringHelper('APIResponse')..add('meta', meta)..add('data', data))
         .toString();
   }
 }
@@ -128,17 +111,11 @@ class APIResponseBuilder implements Builder<APIResponse, APIResponseBuilder> {
 
   set meta(MetaBuilder meta) => _$this._meta = meta;
 
-  List<Map<String, Object>> _data;
+  JsonObject _data;
 
-  List<Map<String, Object>> get data => _$this._data;
+  JsonObject get data => _$this._data;
 
-  set data(List<Map<String, Object>> data) => _$this._data = data;
-
-  String _raw;
-
-  String get raw => _$this._raw;
-
-  set raw(String raw) => _$this._raw = raw;
+  set data(JsonObject data) => _$this._data = data;
 
   APIResponseBuilder();
 
@@ -146,7 +123,6 @@ class APIResponseBuilder implements Builder<APIResponse, APIResponseBuilder> {
     if (_$v != null) {
       _meta = _$v.meta?.toBuilder();
       _data = _$v.data;
-      _raw = _$v.raw;
       _$v = null;
     }
     return this;
@@ -167,7 +143,7 @@ class APIResponseBuilder implements Builder<APIResponse, APIResponseBuilder> {
   _$APIResponse build() {
     _$APIResponse _$result;
     try {
-      _$result = _$v ?? new _$APIResponse._(meta: _meta?.build(), data: data, raw: raw);
+      _$result = _$v ?? new _$APIResponse._(meta: _meta?.build(), data: data);
     } catch (_) {
       String _$failedField;
       try {

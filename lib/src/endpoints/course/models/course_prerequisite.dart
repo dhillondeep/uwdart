@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 
 part 'course_prerequisite.g.dart';
@@ -20,9 +21,9 @@ abstract class CoursePrerequisite implements Built<CoursePrerequisite, CoursePre
   @nullable
   String get prerequisites;
 
-  @BuiltValueField(wireName: "prerequisites_parsed", serialize: false)
+  @BuiltValueField(wireName: "prerequisites_parsed")
   @nullable
-  BuiltList<Object> get prerequisitesParsed;
+  BuiltList<JsonObject> get prerequisitesParsed;
 
   CoursePrerequisite._();
 

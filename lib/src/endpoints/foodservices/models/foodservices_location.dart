@@ -4,6 +4,7 @@ import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/base/models/uw_location.dart';
 import 'package:uwdart/src/base/models/uw_open_hours.dart';
 import 'package:uwdart/src/base/models/uw_special_day.dart';
+
 part 'foodservices_location.g.dart';
 
 /// This Data Model wraps the data related to Food Services Location.

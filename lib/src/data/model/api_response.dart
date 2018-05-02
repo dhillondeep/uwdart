@@ -1,4 +1,5 @@
 import 'package:built_value/built_value.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:uwdart/src/data/model/meta.dart';
 
@@ -10,9 +11,8 @@ abstract class APIResponse implements Built<APIResponse, APIResponseBuilder> {
   @nullable
   Meta get meta;
 
-  List<Map<String, Object>> get data;
-
-  String get raw;
+  @nullable
+  JsonObject get data;
 
   static Serializer<APIResponse> get serializer => _$aPIResponseSerializer;
 

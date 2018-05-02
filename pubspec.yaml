@@ -2,7 +2,7 @@ name: uwdart
 description: >
   Waterloo OpenData Client in Dart. Allows you to access
   data provided by Waterloo Open Data for your application.
-version: 0.0.5
+version: 0.0.6
 author: Deep Dhillon <deep@deepdhillon.ca>
 homepage: https://github.com/dhillondeep/uwdart
 
@@ -10,10 +10,10 @@ environment:
   sdk: '>=2.0.0-dev.32 <2.0.0'
 
 dependencies:
-  http: ^0.11.3+16
-  built_value: ^5.4.3
+  http: '^0.11.3+16'
+  built_value: '^5.4.3'
   built_collection: '>=2.0.0 <4.0.0'
 
 dev_dependencies:
-  build_runner: "^0.8.6"
-  built_value_generator: ^5.4.3
+  build_runner: '^0.8.6'
+  built_value_generator: '^5.4.3'

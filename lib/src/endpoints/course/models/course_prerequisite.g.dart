@@ -47,6 +47,12 @@ class _$CoursePrerequisiteSerializer implements StructuredSerializer<CoursePrere
         ..add('prerequisites')
         ..add(serializers.serialize(object.prerequisites, specifiedType: const FullType(String)));
     }
+    if (object.prerequisitesParsed != null) {
+      result
+        ..add('prerequisites_parsed')
+        ..add(serializers.serialize(object.prerequisitesParsed,
+            specifiedType: const FullType(BuiltList, const [const FullType(JsonObject)])));
+    }
 
     return result;
   }
@@ -78,6 +84,11 @@ class _$CoursePrerequisiteSerializer implements StructuredSerializer<CoursePrere
           result.prerequisites =
               serializers.deserialize(value, specifiedType: const FullType(String)) as String;
           break;
+        case 'prerequisites_parsed':
+          result.prerequisitesParsed.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(BuiltList, const [const FullType(JsonObject)]))
+              as BuiltList);
+          break;
       }
     }
 
@@ -95,7 +106,7 @@ class _$CoursePrerequisite extends CoursePrerequisite {
   @override
   final String prerequisites;
   @override
-  final BuiltList<Object> prerequisitesParsed;
+  final BuiltList<JsonObject> prerequisitesParsed;
 
   factory _$CoursePrerequisite([void updates(CoursePrerequisiteBuilder b)]) =>
       (new CoursePrerequisiteBuilder()..update(updates)).build();
@@ -169,12 +180,12 @@ class CoursePrerequisiteBuilder implements Builder<CoursePrerequisite, CoursePre
 
   set prerequisites(String prerequisites) => _$this._prerequisites = prerequisites;
 
-  ListBuilder<Object> _prerequisitesParsed;
+  ListBuilder<JsonObject> _prerequisitesParsed;
 
-  ListBuilder<Object> get prerequisitesParsed =>
-      _$this._prerequisitesParsed ??= new ListBuilder<Object>();
+  ListBuilder<JsonObject> get prerequisitesParsed =>
+      _$this._prerequisitesParsed ??= new ListBuilder<JsonObject>();
 
-  set prerequisitesParsed(ListBuilder<Object> prerequisitesParsed) =>
+  set prerequisitesParsed(ListBuilder<JsonObject> prerequisitesParsed) =>
       _$this._prerequisitesParsed = prerequisitesParsed;
 
   CoursePrerequisiteBuilder();

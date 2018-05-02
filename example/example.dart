@@ -9,37 +9,53 @@ Future main() async {
   UWDart uwClient = new UWDart(apiKey);
 
   // create raw requests
-  uwClient.makeRawRequest(["foodservices", "watcard"]).then((data) {
-    print(data.raw);
+  uwClient.makeRawRequest('courses/CS/245').then((data) {
+    print(data.data);
+    print('------------------------------------------------------');
+    print('------------------------------------------------------\n');
   });
 
-  // Gives access to all the courses available at UW
-  await uwClient.course.getAllCourses().then((courses) async {
-    for (int i = 0; i < 50; i++) {
-      print("Title: " + courses[i].title);
-      String catalogNum = courses[i].catalogNumber;
-      String subject = courses[i].subject;
+  final courses = await uwClient.course.getAllCourses();
 
-      // based on the subject and catalog number, get detailed info about the package
-      await uwClient.course.getCourseBySubjectCatalog(subject, catalogNum).then((course) {
-        print("-> URL for ${courses[i].catalogNumber}: " + course.url);
-      });
-    }
-    print("");
-  });
+  // The request to the api returns meta data which can be used by the user
+  print(courses.meta);
 
-  // Gives access to all the news available at UW (top 100)
-  await uwClient.news.GetNews().then((news) async {
-    for (var currNews in news) {
-      // get news and the link
-      print(currNews.title + "    ->   " + currNews.link);
+  // For actual endpoint data, get it using data getter
+  final courseData = courses.data;
 
-      String site = currNews.site;
-      num id = currNews.id;
-      print("---------> Site: ${site} ------> ID: ${id}");
-    }
-  });
+  print('------------------------------------------------------');
+  print('------------------------------------------------------\n');
+
+  for (int i = 0; i < 50; i++) {
+    String catalogNum = courseData[i].catalogNumber;
+    String subject = courseData[i].subject;
+
+    final courseSubject = await uwClient.course.getCourseBySubjectCatalog(subject, catalogNum);
+
+    print('Course Name: ${courseData[i].title}');
+    print('Course Subject: ${courseData[i].subject}');
+    print('Course Catalog: ${courseData[i].catalogNumber}');
+    print('Course ID: ${courseSubject.data.courseId}');
+    print('Course Url: ${courseSubject.data.url}');
+    print('------------------------------------------------------');
+  }
+  print('------------------------------------------------------\n');
+
+  final news = await uwClient.news.getNews();
+
+  for (final article in news.data) {
+    String articleTitle = article.title;
+    int articleID = article.id;
+    String articleSite = article.site;
+    String articleLink = article.link;
+
+    print('News Article Title: ${articleTitle}');
+    print('News Article ID: ${articleID}');
+    print('News Article Site: ${articleSite}');
+    print('News Article Link: ${articleLink}');
+    print('------------------------------------------------------');
+  }
 
   // close the connection when all done
-  await uwClient.close();
+  uwClient.close();
 }
